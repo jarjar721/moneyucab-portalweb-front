@@ -35,85 +35,85 @@ export class PaymentCardComponent implements OnInit {
    * Validation message for missing payment card number
    */
   @Input()
-  public ccNumMissingTxt? = 'Card number is required';
+  public ccNumMissingTxt? = 'Se requiere el número de tarjeta';
 
   /**
    * Validation message for too short payment card number
    */
   @Input()
-  public ccNumTooShortTxt? = 'Card number is too short';
+  public ccNumTooShortTxt? = 'Número de tarjeta muy corto';
 
   /**
    * Validation message for too long payment card number
    */
   @Input()
-  public ccNumTooLongTxt? = 'Card number is too long';
+  public ccNumTooLongTxt? = 'Número de tarjeta muy largo';
 
   /**
    * Validation message for payment card number that contains characters other than digits
    */
   @Input()
-  public ccNumContainsLettersTxt? = 'Card number can contain digits only';
+  public ccNumContainsLettersTxt? = 'Número de tarjeta solo debe tener dígitos';
 
   /**
    * Validation message for invalid payment card  number (Luhn's validation)
    */
   @Input()
-  public ccNumChecksumInvalidTxt? = 'Provided card number is invalid';
+  public ccNumChecksumInvalidTxt? = 'Número de tarjeta inválido';
 
   /**
    * Validation message for missing card holder name
    */
   @Input()
-  public cardHolderMissingTxt? = 'Card holder name is required';
+  public cardHolderMissingTxt? = 'Se requiere el nombre del titular';
 
   /**
    * Validation message for too long card holder name
    */
   @Input()
-  public cardHolderTooLongTxt? = 'Card holder name is too long';
+  public cardHolderTooLongTxt? = 'Nombre del titular muy largo';
 
   /**
    * Validation message for missing expiration month
    */
   @Input()
-  public expirationMonthMissingTxt? = 'Expiration month is required';
+  public expirationMonthMissingTxt? = 'Se requiere el mes de vencimiento';
 
   /**
    * Validation message for missing expiration year
    */
   @Input()
-  public expirationYearMissingTxt? = 'Expiration year is required';
+  public expirationYearMissingTxt? = 'Se requiere el año de vencimiento';
 
   /**
    * Validation message for missing CCV number
    */
   @Input()
-  public ccvMissingTxt? = 'CCV number is required';
+  public ccvMissingTxt? = 'Se requiere el código de seguridad (CCV)';
 
   /**
    * Validation message for too short CCV number
    */
   @Input()
-  public ccvNumTooShortTxt? = 'CCV number is too short';
+  public ccvNumTooShortTxt? = 'Código de seguridad (CCV) muy corto';
 
   /**
    * Validation message for too long CCV number
    */
   @Input()
-  public ccvNumTooLongTxt? = 'CCV number is too long';
+  public ccvNumTooLongTxt? = 'Código de seguridad (CCV) muy largo';
 
   /**
    * Validation message for incorrect CCV number containing characters other than digits
    */
   @Input()
-  public ccvContainsLettersTxt? = 'CCV number can contain digits only';
+  public ccvContainsLettersTxt? = 'Código de seguridad (CCV) solo debe tener dígitos';
 
   /**
    * Validation message for expired card
    */
   @Input()
-  public cardExpiredTxt? = 'Card has expired';
+  public cardExpiredTxt? = 'Tarjeta vencida';
 
   /**
    * Switch validation of the payment card number
