@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { PasswordRecoveryComponent } from '../../pages/pw-recovery/pw-recovery.component';
+import { PasswordResetComponent } from '../../pages/pw-reset/pw-reset.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { PasswordRecoveryComponent } from '../../pages/pw-recovery/pw-recovery.c
   declarations: [
     LoginComponent,
     RegisterComponent,
-    PasswordRecoveryComponent
+    PasswordRecoveryComponent,
+    PasswordResetComponent
   ]
 })
 export class AuthLayoutModule { }
