@@ -11,8 +11,9 @@ export const ROUTES: RouteInfo[] = [
     // MoneyUCAB Routes
     { path: '/user-profile', title: 'Mi perfil',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/dashboard', title: 'Tablero de control',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/#!', title: 'Operaciones',  icon:'ni-planet text-blue', class: '' },
-    { path: '/#!', title: 'Recargas',  icon:'ni-pin-3 text-orange', class: '' },
+    { path: '/operaciones', title: 'Operaciones',  icon:'ni-planet text-blue', class: '' },
+    { path: '/billeteras', title: 'Billeteras',  icon:'ni-pin-3 text-blue', class: '' },
+    { path: '/recargas', title: 'Recargas',  icon:'ni-pin-3 text-orange', class: '' },
     // Argon Template Routes
     { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
     { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
