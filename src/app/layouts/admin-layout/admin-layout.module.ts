@@ -14,9 +14,9 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { BilleterasComponent } from '../../pages/billeteras/billeteras.component';
+import { OperacionesComponent } from '../../pages/operaciones/operaciones.component';
 
 import { NgPaymentCardModule } from '../../components/payment-card/ng-payment-card.module';
-import { PaymentCardComponent } from '../../components/payment-card/payment-card.component';
 
 @NgModule({
   imports: [
@@ -35,7 +35,7 @@ import { PaymentCardComponent } from '../../components/payment-card/payment-card
     IconsComponent,
     MapsComponent,
     BilleterasComponent,
-    //PaymentCardComponent //TEST
+    OperacionesComponent
   ]
 })
 

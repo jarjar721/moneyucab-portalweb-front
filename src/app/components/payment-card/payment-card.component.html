@@ -63,17 +63,10 @@
       <form role="form" [formGroup]="ccForm" autocomplete="off">
         <div class="form-group">
           <label for="cc-number" class="cc-form__label cc-form__label--first"
-            >Número de tarjeta</label>
-          <input
-            #ccNumber
-            class="cc-form__input"
-            id="cc-number"
-            aria-label="Card number"
-            type="text"
-            title="Card number"
-            maxlength="19"
-            formControlName="cardNumber"
-            (focus)="ccBoxFlip.classList.remove('hover')"
+            >Número de la tarjeta</label>
+          <input #ccNumber class="cc-form__input" id="cc-number"
+            aria-label="Card number" type="text" title="Card number"
+            maxlength="19" formControlName="cardNumber" (focus)="ccBoxFlip.classList.remove('hover')"
           />
           <div
             class="cc-form__error"
