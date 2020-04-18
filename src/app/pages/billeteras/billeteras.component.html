@@ -99,9 +99,18 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <h3 class="mb-0">Payment Card Model</h3>
+          <button class="btn btn-primary float-right" (click)="open(content)">Paycard</button>
         </div>
-        <ng-payment-card></ng-payment-card>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Nueva tarjeta de pago</h4>
+  </div>
+  <div class="modal-body">
+    <ng-payment-card></ng-payment-card>
+  </div>
+</ng-template>

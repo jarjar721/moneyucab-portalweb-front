@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { PaymentCardComponent } from '../../components/payment-card/payment-card.component';
 
 @Component({
   selector: 'app-billeteras',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BilleterasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  open(content) {
+    this.modalService.open(content, { size: 'lg', keyboard: true } );
   }
 
 }
