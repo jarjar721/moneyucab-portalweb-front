@@ -26,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     ToastrModule.forRoot({
       progressBar: true
-    }) // test
+    })
   ],
   declarations: [
     AppComponent,

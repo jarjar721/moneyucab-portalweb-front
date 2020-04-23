@@ -25,7 +25,6 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-
     // NgbModule
   ],
   declarations: [

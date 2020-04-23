@@ -6,6 +6,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+
+  formModel = {
+    Username : '',
+    Password : ''
+  }
+
   constructor() {}
 
   ngOnInit() {
