@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
   public focus;
   public listTitles: any[];
   public location: Location;
+
   constructor(location: Location,  private element: ElementRef, private router: Router) {
     this.location = location;
   }
@@ -19,6 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
@@ -31,6 +34,11 @@ export class NavbarComponent implements OnInit {
         }
     }
     return 'Dashboard';
+  }
+
+  onLogout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
 }

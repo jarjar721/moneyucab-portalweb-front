@@ -44,7 +44,7 @@
             <span>Parámetros</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a routerLinkActive="active" [routerLink]="['/login']" class="dropdown-item">
+          <a (click)="onLogout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Cerrar sesión</span>
           </a>

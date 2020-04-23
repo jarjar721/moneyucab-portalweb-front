@@ -9,7 +9,10 @@ export class UsuarioService {
 
   constructor(private fb:FormBuilder, private http:HttpClient) { }
 
-  readonly BaseURI = 'http://localhost:49683/api/';
+  //Si corres el servidor en Visual Studio
+  //readonly BaseURI = 'http://localhost:49683/api/';
+  //Si corres el servidor en consola usando "dotnet run"
+  readonly BaseURI = 'http://localhost:5000/api/';
 
   formModel = this.fb.group({
     UserName : ['', Validators.required],
@@ -34,6 +37,7 @@ export class UsuarioService {
     }
   }
 
+
   registrar(){
     var body = {
       UserName : this.formModel.value.UserName,
@@ -41,6 +45,11 @@ export class UsuarioService {
       Password : this.formModel.value.Passwords.Password
     };
     return this.http.post(this.BaseURI+'Usuario/Register', body);
+  }
+
+
+  login(formData){
+    return this.http.post(this.BaseURI+'Usuario/Login', formData);
   }
 
 

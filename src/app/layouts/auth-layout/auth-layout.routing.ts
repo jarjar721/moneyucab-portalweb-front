@@ -9,5 +9,5 @@ export const AuthLayoutRoutes: Routes = [
     { path: 'login',          component: LoginComponent },
     { path: 'register',       component: RegisterComponent },
     { path: 'pw-recovery',    component: PasswordRecoveryComponent },
-    { path: 'pw-reset',    component: PasswordResetComponent }
+    { path: 'pw-reset',       component: PasswordResetComponent }
 ];
