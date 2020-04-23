@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -21,7 +23,10 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot({
+      progressBar: true
+    }) // test
   ],
   declarations: [
     AppComponent,
