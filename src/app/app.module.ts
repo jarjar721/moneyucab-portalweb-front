@@ -25,7 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ToastrModule.forRoot({
+    ToastrModule.forRoot({ // Para la notificaciones
       progressBar: true
     })
   ],
