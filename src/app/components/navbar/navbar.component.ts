@@ -21,6 +21,14 @@ export class NavbarComponent implements OnInit {
     this.location = location;
   }
 
+  /*
+  * FUNCION: ngOnInit()
+  * DESCRIPCIÓN:
+  * Al inicializar el navbar, se llena el array "listTitles" y se buscan
+  * los detalles del usuario.
+  * -- Si hay un resultado en la busqueda, los guarda en "userDetails".
+  * -- Si hay un error en la busqueda, muestrar el error por consola.
+  */
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.service.getUserDetails().subscribe(
@@ -34,6 +42,13 @@ export class NavbarComponent implements OnInit {
     )
   }
 
+  /*
+  * FUNCION: getTitle()
+  * DESCRIPCIÓN:
+  * Se encarga de colocar en el navbar el título de la página a la que
+  * accede el usuario.
+  * ESTA FUNCIÓN ES PROPIA DE LA PLANTILLA
+  */
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
@@ -48,6 +63,12 @@ export class NavbarComponent implements OnInit {
     return 'Dashboard';
   }
 
+  /*
+  * FUNCION: onLogout()
+  * DESCRIPCIÓN:
+  * Al cerrar sesión, se elimina el token del Local Storage y se redirige
+  * al usuario al login page.
+  */
   onLogout(){
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

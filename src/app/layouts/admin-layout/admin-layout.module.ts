@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgPaymentCardModule } from '../../components/payment-card/ng-payment-card.module';
 // import { ToastrModule } from 'ngx-toastr';
 
+// Rutas del Portal
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
 // Components
@@ -30,7 +31,7 @@ import { OperacionesComponent } from '../../pages/operaciones/operaciones.compon
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    NgPaymentCardModule
+    NgPaymentCardModule // Modulo para el Paycard feature
   ],
   declarations: [
     DashboardComponent,
