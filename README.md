@@ -6,7 +6,7 @@ El portal web de MoneyUCAB es un proyecto académico del curso Desarrollo del So
 * [Marco Licini](#)
 * [José Andrés Rodríguez](https://www.linkedin.com/in/josé-andrés-rodríguez-508274125)
 
-## Licensing
+## Licensing 
 
 - Copyright 2018 Creative Tim (https://www.creative-tim.com/?ref=ada-github-readme)
 
