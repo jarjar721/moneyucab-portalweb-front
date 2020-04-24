@@ -14,6 +14,16 @@ export class UsuarioService {
   //Si corres el servidor en consola usando "dotnet run"
   readonly BaseURI = 'http://localhost:5000/api/';
 
+  /*
+  * MODEL: formModel
+  * DESCRIPCIÓN:
+  * Es el model del formulario de registro. En él se validan que los campos
+  * cumplan con las siguiente validaciones, segun corresponda:
+  * -- Campo requerido
+  * -- Campo debe ser un email
+  * -- Contraseña debe tener al menos 6 caracteres de longitud
+  * -- Campo Password y campo ConfirmPassword deben ser iguales
+  */
   formModel = this.fb.group({
     UserName : ['', Validators.required],
     Email : ['', [Validators.required, Validators.email]],
@@ -25,7 +35,15 @@ export class UsuarioService {
     })
   });
 
-
+  /*
+  * FUNCION: comparePasswords(fb:FormGroup)
+  * DESCRIPCIÓN:
+  * Compara los valores introducidos en los campos de contraseñas cuando
+  * un usuario se registra. 
+  * -- Si los valores de las contraseñas NO coinciden, se crea un error
+  *    para ser mostrado en la vista.
+  * -- Si las constraseñas SÍ coinciden, no se crea el error.
+  */
   comparePasswords(fb:FormGroup) {
     let confirmPasswordControl = fb.get('ConfirmPassword');
     //passwordMismatch
@@ -37,7 +55,12 @@ export class UsuarioService {
     }
   }
 
-
+  /*
+  * FUNCION: registrar()
+  * DESCRIPCIÓN:
+  * Toma los valores del formulario de registro y los envía mediante un
+  * POST request al servidor, usando el URL correspondiente.
+  */
   registrar(){
     var body = {
       UserName : this.formModel.value.UserName,
@@ -47,12 +70,23 @@ export class UsuarioService {
     return this.http.post(this.BaseURI+'Usuario/Register', body);
   }
 
-
+  /*
+  * FUNCION: login(formData)
+  * DESCRIPCIÓN:
+  * Envia al servidor los datos del formulario del login mediante un
+  * POST request, usando el URL del correspondiente.
+  */
   login(formData){
     return this.http.post(this.BaseURI+'Usuario/Login', formData);
   }
 
-
+  /*
+  * FUNCION: getUserDetails()
+  * DESCRIPCIÓN:
+  * Solicita los datos del usuario mediante un GET request enviada al servidor.
+  * Para ello, es necesario enviar el token creado al iniciar sesión en el 
+  * header del HTTP request. Esta es una capa de seguridad en la aplicación.
+  */
   getUserDetails(){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')});
     return this.http.get(this.BaseURI+'Dashboard', {headers: tokenHeader});
