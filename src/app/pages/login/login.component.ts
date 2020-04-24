@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private service: UsuarioService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
+    if(localStorage.getItem('token') != null){
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   onSubmit(form: NgForm) {
