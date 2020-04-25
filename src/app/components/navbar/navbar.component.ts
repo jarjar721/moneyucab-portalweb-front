@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 
+// Services
 import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   public userDetails;
 
-  constructor(location: Location,  private element: ElementRef, private router: Router, private service: UsuarioService) {
+  constructor(location: Location, private element: ElementRef, private router: Router, private service: UsuarioService) {
     this.location = location;
   }
 
@@ -39,7 +40,7 @@ export class NavbarComponent implements OnInit {
       err => {
         console.log(err);
       }
-    )
+    );
   }
 
   /*
