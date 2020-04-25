@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
   * Se encarga de verificar que el usuario haya iniciado sesión para 
   * poder acceder al portal. Revisa que haya un token en el Local Storage
   * del browser.
-  * -- Si encuentra el token, devuelve TRUE y permite el acceso.
+  * -- Si encuentra el token y no ha expirado, devuelve TRUE y permite el acceso.
   * -- Si no encuentra el token, redirige al usuario al login page.
   */
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
