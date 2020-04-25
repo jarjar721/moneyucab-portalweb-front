@@ -13,7 +13,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
+// External Modules
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    NgxSpinnerModule, // Para los spinners de carga
     ToastrModule.forRoot({ // Para la notificaciones
       progressBar: true
     })
