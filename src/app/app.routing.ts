@@ -7,8 +7,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './auth/auth.guard';
 
+import { LandingComponent } from './pages/landing/landing.component';
+
 const routes: Routes =[
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: LandingComponent },
   { path: '', component: AuthLayoutComponent,
     children: [
       {

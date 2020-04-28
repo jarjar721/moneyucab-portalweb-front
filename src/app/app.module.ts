@@ -16,6 +16,7 @@ import { ComponentsModule } from './components/components.module';
 // External Modules
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LandingComponent } from './pages/landing/landing.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    LandingComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

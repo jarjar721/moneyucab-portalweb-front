@@ -29,11 +29,21 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/argon.scss",
-              "node_modules/ngx-toastr/toastr.css" // test
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/vendor/owl-carousel/css/owl.carousel.min.css",
+              "src/assets/vendor/owl-carousel/css/owl.theme.default.css",
+              "src/assets/vendor/mdi/css/materialdesignicons.min.css",
+              "src/assets/vendor/aos/css/aos.css",
+              "src/assets/css/style.min.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
-              "node_modules/clipboard/dist/clipboard.min.js"
+              "node_modules/clipboard/dist/clipboard.min.js",
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/vendors/bootstrap/bootstrap.min.js",
+              "src/assets/vendor/owl-carousel/js/owl.carousel.min.js",
+              "src/assets/vendor/aos/js/aos.js",
+              "src/assets/js/landingpage.js"
             ]
           },
           "configurations": {
