@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
           this.spinner.hide();
-        }, 2000); // Al retornar el resultado, el spinner se esconde luego de 2seg
+        }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
         
         this.router.navigateByUrl('/dashboard');
       },

@@ -17,6 +17,7 @@ import { ComponentsModule } from './components/components.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingComponent } from './pages/landing/landing.component';
+import { RegistrationWizardComponent } from './pages/registration-wizard/registration-wizard.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { LandingComponent } from './pages/landing/landing.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    LandingComponent
+    LandingComponent,
+    RegistrationWizardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
