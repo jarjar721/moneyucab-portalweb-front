@@ -33,8 +33,6 @@
               "src/assets/vendor/owl-carousel/css/owl.theme.default.css",
               "src/assets/vendor/mdi/css/materialdesignicons.min.css",
               "src/assets/vendor/aos/css/aos.css",
-              "src/assets/css/style.min.css",
-              "src/assets/scss/landing/style.scss",
               "src/assets/scss/argon.scss"
             ],
             "scripts": [

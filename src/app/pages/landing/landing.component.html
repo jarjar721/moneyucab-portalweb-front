@@ -54,8 +54,6 @@
             <li class="nav-item btn-contact-us pl-4 pl-lg-0">
               <button 
                 class="btn btn-info"
-                data-toggle="modal"
-                data-target="#exampleModal"
                 routerLinkActive="active" [routerLink]="['/landing']"
                 >
                 Iniciar Sesión
@@ -550,13 +548,17 @@
         <div class="contact-us-bgimage grid-margin">
           <div class="pb-4">
             <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">
-              Do you have any projects?
+              ¿Tienes un reclamo o sugerencia?
             </h4>
-            <h4 class="pt-1" data-aos="fade-down">Contact us</h4>
+            <h4 class="pt-1" data-aos="fade-down">Contáctanos</h4>
           </div>
           <div data-aos="fade-up">
-            <button class="btn btn-rounded btn-outline-danger">
-              Contact us
+            <button 
+              class="btn btn-rounded btn-outline-danger"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              >
+              Contáctanos
             </button>
           </div>
         </div>
@@ -625,43 +627,43 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Contact Us</h4>
+              <h4 class="modal-title" id="exampleModalLabel">Contáctanos</h4>
             </div>
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="Name">Name</label>
+                  <label for="Name">Nombre</label>
                   <input
                     type="text"
                     class="form-control"
                     id="Name"
-                    placeholder="Name"
+                    placeholder="Nombre"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="Email">Email</label>
+                  <label for="Email">Correo electrónico</label>
                   <input
                     type="email"
                     class="form-control"
                     id="Email-1"
-                    placeholder="Email"
+                    placeholder="Correo electrónico"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="Message">Message</label>
+                  <label for="Message">Mensaje</label>
                   <textarea
                     class="form-control"
                     id="Message"
-                    placeholder="Enter your Message"
+                    placeholder="Escriba su mensaje"
                   ></textarea>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" data-dismiss="modal">
-                Close
+                Cerrar
               </button>
-              <button type="button" class="btn btn-success">Submit</button>
+              <button type="button" class="btn btn-success">Enviar</button>
             </div>
           </div>
         </div>
