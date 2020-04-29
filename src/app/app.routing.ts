@@ -3,11 +3,10 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LandingComponent } from './pages/landing/landing.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './auth/auth.guard';
-
-import { LandingComponent } from './pages/landing/landing.component';
 
 const routes: Routes =[
   { path: '', component: LandingComponent },

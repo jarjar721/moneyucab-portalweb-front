@@ -29,10 +29,10 @@
             "styles": [
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "src/assets/vendor/owl-carousel/css/owl.carousel.min.css",
-              "src/assets/vendor/owl-carousel/css/owl.theme.default.css",
               "src/assets/vendor/mdi/css/materialdesignicons.min.css",
               "src/assets/vendor/aos/css/aos.css",
+              "src/assets/vendor/owl-carousel/css/owl.theme.default.css",
+              "src/assets/vendor/owl-carousel/css/owl.carousel.min.css",
               "src/assets/scss/argon.scss"
             ],
             "scripts": [
