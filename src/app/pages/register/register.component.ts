@@ -35,7 +35,11 @@ export class RegisterComponent implements OnInit {
           
           this.router.navigateByUrl('/registration-wizard');
         } else {
-          this.spinner.hide();
+
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1500); // Al retornar el resultado, el spinner se esconde luego de 3seg
+          
           res.errors.forEach(element => {
             switch (element.code) {
               case 'DuplicateUserName':
