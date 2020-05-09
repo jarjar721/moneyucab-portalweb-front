@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="row mt-3 mb-7 justify-content-center">
-    <div class="col-5">
+  <div class="row mb-8 justify-content-center">
+    <div class="col-7">
       <div #ccBoxFlip class="cc-box--flip">
         <div class="cc-box__front">
           <div class="cc-box__logo">
@@ -59,7 +59,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="col-12">
       <form role="form" [formGroup]="ccForm" autocomplete="off">
         <div class="form-group">
           <label for="cc-number" class="cc-form__label cc-form__label--first"
@@ -271,8 +271,11 @@
         >
           {{ ccvContainsLettersTxt }}
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-lg btn-block"
+        <div class="form-group float-right">
+          <button type="button" class="btn btn-warning"
+            aria-label="cancel" (click)="modal.close()"
+          >Cancelar</button>
+          <button type="submit" class="btn btn-primary"
             aria-label="submit" (click)="emitSavedCard()" (keydown.enter)="emitSavedCard()"
           >Guardar</button>
         </div>
@@ -280,3 +283,4 @@
     </div>
   </div>
 </div>
+

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./operaciones.component.scss']
 })
 export class OperacionesComponent implements OnInit {
-  constructor() {}
+
+  constructor() { }
 
   ngOnInit() {
 
