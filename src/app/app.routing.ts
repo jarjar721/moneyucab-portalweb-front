@@ -3,12 +3,16 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LandingComponent } from './pages/landing/landing.component';
+import { RegistrationWizardComponent } from './pages/registration-wizard/registration-wizard.component';
+
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes =[
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: LandingComponent },
+  { path: 'registration-wizard', component: RegistrationWizardComponent },
   { path: '', component: AuthLayoutComponent,
     children: [
       {

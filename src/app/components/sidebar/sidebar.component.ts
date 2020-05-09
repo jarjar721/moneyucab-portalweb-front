@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// Services
+import { UsuarioService } from 'src/app/shared/usuario.service';
+
 declare interface RouteInfo {
     path: string;
     title: string;
     icon: string;
     class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
     // MoneyUCAB Routes
     { path: '/user-profile', title: 'Mi perfil',  icon:'ni-single-02 text-yellow', class: '' },
@@ -31,13 +35,38 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
+  public userDetails;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: UsuarioService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+
+   this.service.getUserDetails().subscribe(
+      res => {
+        this.userDetails = res;
+        console.log(res); //Checking
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
+
+
+  /*
+  * FUNCION: onLogout()
+  * DESCRIPCIÓN:
+  * Al cerrar sesión, se elimina el token del Local Storage y se redirige
+  * al usuario al login page.
+  */
+  onLogout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }
