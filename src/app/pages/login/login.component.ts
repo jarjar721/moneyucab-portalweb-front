@@ -14,18 +14,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  formModel = {
-    //UserName : '',  En caso de que el login sea con username
-    Email : '',
-    Password : ''
-  }
-
   constructor(
     private service: UsuarioService, 
     private router: Router, 
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
     ) {}
+
+  formModel = {
+    Email : '',
+    Password : ''
+  }
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){

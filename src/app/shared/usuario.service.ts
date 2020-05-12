@@ -7,7 +7,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  constructor(private fb:FormBuilder, private http:HttpClient) { }
+  constructor(
+    private fb:FormBuilder, 
+    private http:HttpClient
+    ) { }
 
   //Si corres el servidor en Visual Studio
   //readonly BaseURI = 'http://localhost:49683/api/';
@@ -44,7 +47,7 @@ export class UsuarioService {
   *    para ser mostrado en la vista.
   * -- Si las constraseñas SÍ coinciden, no se crea el error.
   */
-  comparePasswords(fb:FormGroup) {
+  comparePasswords(fb: FormGroup) {
     let confirmPasswordControl = fb.get('ConfirmPassword');
     //passwordMismatch
     if(confirmPasswordControl.errors == null || 'passwordMismatch' in confirmPasswordControl.errors){
@@ -61,7 +64,7 @@ export class UsuarioService {
   * Toma los valores del formulario de registro y los envía mediante un
   * POST request al servidor, usando el URL correspondiente.
   */
-  registrar(){
+  registrar() {
     var body = {
       UserName : this.formModel.value.UserName,
       Email : this.formModel.value.Email,
@@ -76,8 +79,30 @@ export class UsuarioService {
   * Envia al servidor los datos del formulario del login mediante un
   * POST request, usando el URL del correspondiente.
   */
-  login(formData){
+  login(formData) {
     return this.http.post(this.BaseURI+'Usuario/Login', formData);
+  }
+
+  /*
+  * FUNCION: forgotPasswordEmail(formData)
+  * DESCRIPCIÓN:
+  * Envia al servidor los datos del formulario (email) del la vista de
+  * "Olvidé mi contraseña" mediante un POST request, usando el URL del 
+  * correspondiente.
+  */
+  forgotPasswordEmail(formData) {
+    return this.http.post(this.BaseURI+'Usuario/ForgotPasswordEmail', formData);
+  }
+
+  /*
+  * FUNCION: resetPassword(formData)
+  * DESCRIPCIÓN:
+  * Envia al servidor el nuevo password confirmado junto al userID y al
+  * hashed ResetPasswordToken mediante un POST request, usando el URL del 
+  * correspondiente.
+  */
+  resetPassword(formData) {
+    return this.http.post(this.BaseURI+'Usuario/ResetPassword', formData);
   }
 
   /*

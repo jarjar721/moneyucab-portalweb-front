@@ -27,38 +27,32 @@ export class RegisterComponent implements OnInit {
     this.spinner.show();
     this.service.registrar().subscribe(
       (res : any) => {
-        if (res.succeeded) {
-
-          setTimeout(() => {
-            this.spinner.hide();
-          }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
-          
-          this.router.navigateByUrl('/registration-wizard');
-        } else {
-
-          setTimeout(() => {
-            this.spinner.hide();
-          }, 1500); // Al retornar el resultado, el spinner se esconde luego de 3seg
-          
-          res.errors.forEach(element => {
-            switch (element.code) {
-              case 'DuplicateUserName':
-                  this.toastr.error('Ingrese un username distinto', '¡Username ya existe!');
-                break;
-              case 'DuplicateEmail':
-                  this.toastr.error('Ingrese un correo electrónico distinto', '¡Correo electrónico ya existe!');
-                break;
-
-              default:
-                  this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
-                break;
-            }
-          });
-        }
+        console.log(res);
+        
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
+        
+        this.router.navigateByUrl('/registration-wizard');
       },
       err => {
+        this.spinner.hide();
+
+        err.errors.forEach(element => {
+          switch (element.code) {
+            case 'DuplicateUserName':
+                this.toastr.error('Ingrese un username distinto', '¡Username ya existe!');
+              break;
+            case 'DuplicateEmail':
+                this.toastr.error('Ingrese un correo electrónico distinto', '¡Correo electrónico ya existe!');
+              break;
+
+            default:
+                this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
+              break;
+          }
+        });
         console.log(err);
-        this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
       }
     );
   }
