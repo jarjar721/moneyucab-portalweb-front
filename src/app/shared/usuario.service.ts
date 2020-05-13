@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UsuarioService {
 
   constructor(
-    private fb:FormBuilder, 
+    private formBuilder:FormBuilder, 
     private http:HttpClient
     ) { }
 
@@ -27,10 +27,10 @@ export class UsuarioService {
   * -- Contraseña debe tener al menos 6 caracteres de longitud
   * -- Campo Password y campo ConfirmPassword deben ser iguales
   */
-  formModel = this.fb.group({
+  formModel = this.formBuilder.group({
     UserName : ['', Validators.required],
     Email : ['', [Validators.required, Validators.email]],
-    Passwords : this.fb.group({
+    Passwords : this.formBuilder.group({
       Password : ['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword : ['', Validators.required]
     }, {
@@ -47,11 +47,11 @@ export class UsuarioService {
   *    para ser mostrado en la vista.
   * -- Si las constraseñas SÍ coinciden, no se crea el error.
   */
-  comparePasswords(fb: FormGroup) {
-    let confirmPasswordControl = fb.get('ConfirmPassword');
+  comparePasswords(formGroup: FormGroup) {
+    let confirmPasswordControl = formGroup.get('ConfirmPassword');
     //passwordMismatch
     if(confirmPasswordControl.errors == null || 'passwordMismatch' in confirmPasswordControl.errors){
-      if(fb.get('Password').value != fb.get('ConfirmPassword').value)
+      if(formGroup.get('Password').value != formGroup.get('ConfirmPassword').value)
         confirmPasswordControl.setErrors({ passwordMismatch : true });
       else
         confirmPasswordControl.setErrors(null);
@@ -103,6 +103,16 @@ export class UsuarioService {
   */
   resetPassword(formData) {
     return this.http.post(this.BaseURI+'Usuario/ResetPassword', formData);
+  }
+
+  /*
+  * FUNCION: confirmAccount(body)
+  * DESCRIPCIÓN:
+  * Envia al servidor el userID y el hashed confirmationToken mediante 
+  * un POST request, usando el URL del correspondiente.
+  */
+  confirmAccount(body) {
+    return this.http.post(this.BaseURI+'Usuario/ConfirmedEmail', body);
   }
 
   /*

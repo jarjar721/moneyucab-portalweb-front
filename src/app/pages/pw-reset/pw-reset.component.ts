@@ -20,7 +20,7 @@ export class PasswordResetComponent implements OnInit {
     ) { }
 
   userID: string;
-  ResetPasswordToken: string;
+  resetPasswordToken: string;
 
   formModel = this.formBuilder.group({
     Passwords: this.formBuilder.group({
@@ -35,7 +35,7 @@ export class PasswordResetComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       this.userID = params.get('userID');
-      this.ResetPasswordToken = params.get('resetPasswordToken');
+      this.resetPasswordToken = params.get('resetPasswordToken');
     })
   }
 
@@ -43,7 +43,7 @@ export class PasswordResetComponent implements OnInit {
   onSubmit() {
     var body = {
       userID: this.userID,
-      resetPasswordToken: this.ResetPasswordToken,
+      resetPasswordToken: this.resetPasswordToken,
       newPassword: this.formModel.value.Passwords.Password
     };
     this.service.resetPassword(body).subscribe(
