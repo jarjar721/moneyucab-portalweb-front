@@ -49,10 +49,12 @@ export class PasswordResetComponent implements OnInit {
     this.service.resetPassword(body).subscribe(
       (res : any) => {
         console.log(res);
-        
-        setTimeout(() => {
-          this.toastr.success('Ingrese al portal con su contraseña nueva', '¡Cambio exitoso!');
-        }, 5000); // Al retornar el resultado, el spinner se esconde luego de 3seg
+
+        if (res.key == "ResetPasswordSuccess") {
+          setTimeout(() => {
+            this.toastr.success('Ingrese al portal con su contraseña nueva', res.message);
+          }, 5000); // Al retornar el resultado, el spinner se esconde luego de 3seg  
+        }
         
         this.router.navigateByUrl('/login');
       },

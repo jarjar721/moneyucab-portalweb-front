@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+// Layout Components
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -16,6 +17,8 @@ import { ComponentsModule } from './components/components.module';
 // External Modules
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+
+// Page Components under no layout
 import { LandingComponent } from './pages/landing/landing.component';
 import { RegistrationWizardComponent } from './pages/registration-wizard/registration-wizard.component';
 
@@ -23,7 +26,7 @@ import { RegistrationWizardComponent } from './pages/registration-wizard/registr
   imports: [
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule, // This works!
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,

@@ -37,22 +37,19 @@ export class RegisterComponent implements OnInit {
       },
       err => {
         this.spinner.hide();
-
-        err.errors.forEach(element => {
-          switch (element.code) {
-            case 'DuplicateUserName':
-                this.toastr.error('Ingrese un username distinto', '¡Username ya existe!');
-              break;
-            case 'DuplicateEmail':
-                this.toastr.error('Ingrese un correo electrónico distinto', '¡Correo electrónico ya existe!');
-              break;
-
-            default:
-                this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
-              break;
-          }
-        });
         console.log(err);
+
+        if(err.status == 400) {
+          if (err.error.key == "DuplicateUserName") {
+            this.toastr.error(err.error.message, '¡Username ya ha sido tomado!');
+          }
+          if (err.error.key == "DuplicateEmail") {
+            this.toastr.error(err.error.message, '¡Correo electrónico ya ha sido tomado!');
+          }
+        } else {
+          this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
+        }
+
       }
     );
   }

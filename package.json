@@ -30,6 +30,7 @@
     "clipboard": "2.0.4",
     "core-js": "3.6.4",
     "mdi": "^2.2.43",
+    "moment": "^2.25.3",
     "ng-payment-card": "0.0.8",
     "ngx-clipboard": "13.0.0",
     "ngx-spinner": "^9.0.2",
