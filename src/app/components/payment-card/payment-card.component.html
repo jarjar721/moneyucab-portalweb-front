@@ -61,96 +61,124 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <form role="form" [formGroup]="ccForm" autocomplete="off">
-        <div class="form-group">
-          <label for="cc-number" class="cc-form__label cc-form__label--first"
+        <div class="form-group row">
+          <div class="col-6">
+            <label for="cc-number" class="cc-form__label cc-form__label--first"
             >Número de la tarjeta</label>
-          <input #ccNumber class="cc-form__input" id="cc-number"
-            aria-label="Card number" type="text" title="Card number"
-            maxlength="19" formControlName="cardNumber" (focus)="ccBoxFlip.classList.remove('hover')"
-          />
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCCNum &&
-              ccForm.get('cardNumber').touched &&
-              ccForm.get('cardNumber').hasError('required')
-            "
-          >
-            {{ ccNumMissingTxt }}
+            <input #ccNumber class="cc-form__input" id="cc-number"
+              aria-label="Card number" type="text" title="Card number"
+              maxlength="19" formControlName="cardNumber" (focus)="ccBoxFlip.classList.remove('hover')"
+            />
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCCNum &&
+                ccForm.get('cardNumber').touched &&
+                ccForm.get('cardNumber').hasError('required')
+              "
+            >
+              {{ ccNumMissingTxt }}
+            </div>
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCCNum &&
+                ccForm.get('cardNumber').touched &&
+                ccForm.get('cardNumber').hasError('minlength')
+              "
+            >
+              {{ ccNumTooShortTxt }}
+            </div>
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCCNum &&
+                ccForm.get('cardNumber').touched &&
+                ccForm.get('cardNumber').hasError('maxlength')
+              "
+            >
+              {{ ccNumTooLongTxt }}
+            </div>
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCCNum &&
+                ccForm.get('cardNumber').touched &&
+                ccForm.get('cardNumber').hasError('numbersOnly')
+              "
+            >
+              {{ ccNumContainsLettersTxt }}
+            </div>
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCCNum &&
+                ccForm.get('cardNumber').touched &&
+                ccForm.get('cardNumber').hasError('checksum')
+              "
+            >
+              {{ ccNumChecksumInvalidTxt }}
+            </div>
           </div>
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCCNum &&
-              ccForm.get('cardNumber').touched &&
-              ccForm.get('cardNumber').hasError('minlength')
-            "
-          >
-            {{ ccNumTooShortTxt }}
-          </div>
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCCNum &&
-              ccForm.get('cardNumber').touched &&
-              ccForm.get('cardNumber').hasError('maxlength')
-            "
-          >
-            {{ ccNumTooLongTxt }}
-          </div>
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCCNum &&
-              ccForm.get('cardNumber').touched &&
-              ccForm.get('cardNumber').hasError('numbersOnly')
-            "
-          >
-            {{ ccNumContainsLettersTxt }}
-          </div>
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCCNum &&
-              ccForm.get('cardNumber').touched &&
-              ccForm.get('cardNumber').hasError('checksum')
-            "
-          >
-            {{ ccNumChecksumInvalidTxt }}
+          <div class="col-6">
+            <label for="cc-number" class="cc-form__label cc-form__label--first"
+            >Tipo de tarjeta</label>
+            <select
+            id="card-type"
+            class="cc-form__select"
+            formControlName="tipoTarjeta"
+            >
+              <option value="1">Crédito</option>
+              <option value="2">Dédito</option>
+            </select>
           </div>
         </div>
-        <div class="form-group">
-          <label for="cc-holder-name" class="cc-form__label">Titular de la tarjeta</label>
-          <input
-            class="cc-form__input"
-            id="cc-holder-name"
-            aria-label="Card holder name"
-            type="text"
-            title="Card holder name"
-            maxlength="22"
-            formControlName="cardHolder"
-            (focus)="ccBoxFlip.classList.remove('hover')"
-          />
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCardHolder &&
-              ccForm.get('cardHolder').touched &&
-              ccForm.get('cardHolder').hasError('required')
-            "
-          >
-            {{ cardHolderMissingTxt }}
+        <div class="form-group row">
+          <div class="col-6">
+            <label for="cc-holder-name" class="cc-form__label">Titular de la tarjeta</label>
+            <input
+              class="cc-form__input"
+              id="cc-holder-name"
+              aria-label="Card holder name"
+              type="text"
+              title="Card holder name"
+              maxlength="22"
+              formControlName="cardHolder"
+              (focus)="ccBoxFlip.classList.remove('hover')"
+            />
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCardHolder &&
+                ccForm.get('cardHolder').touched &&
+                ccForm.get('cardHolder').hasError('required')
+              "
+            >
+              {{ cardHolderMissingTxt }}
+            </div>
+            <div
+              class="cc-form__error"
+              *ngIf="
+                validateCardHolder &&
+                ccForm.get('cardHolder').touched &&
+                ccForm.get('cardHolder').hasError('maxlength')
+              "
+            >
+              {{ cardHolderTooLongTxt }}
+            </div>
           </div>
-          <div
-            class="cc-form__error"
-            *ngIf="
-              validateCardHolder &&
-              ccForm.get('cardHolder').touched &&
-              ccForm.get('cardHolder').hasError('maxlength')
-            "
-          >
-            {{ cardHolderTooLongTxt }}
+          <div class="col-6">
+            <label for="cc-holder-name" class="cc-form__label">Banco</label>
+            <select
+            id="bank"
+            class="cc-form__select"
+            formControlName="bancoEmisor"
+            >
+              <option value="1">Banesco</option>
+              <option value="2">Mercantil</option>
+            </select>
           </div>
+          
         </div>
         <div class="form-group row">
           <div class="col-md-4">

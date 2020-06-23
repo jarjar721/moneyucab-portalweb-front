@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  public userDetails;
+  public userName: String;
 
   constructor(location: Location, private element: ElementRef, private router: Router, private service: UsuarioService) {
     this.location = location;
@@ -32,6 +32,8 @@ export class NavbarComponent implements OnInit {
   */
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.userName = localStorage.getItem('username');
+    /*
     this.service.getUserDetails().subscribe(
       res => {
         this.userDetails = res;
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     );
+    */
   }
 
   /*
@@ -72,6 +75,9 @@ export class NavbarComponent implements OnInit {
   */
   onLogout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+    localStorage.removeItem('username');
+    
     this.router.navigate(['/login']);
   }
 

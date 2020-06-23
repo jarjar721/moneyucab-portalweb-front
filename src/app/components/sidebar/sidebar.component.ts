@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
-  public userDetails;
+  public userName: String;
 
   constructor(private router: Router, private service: UsuarioService) { }
 
@@ -45,7 +45,8 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
-
+   this.userName = localStorage.getItem('username');
+   /*
    this.service.getUserDetails().subscribe(
       res => {
         this.userDetails = res;
@@ -55,6 +56,7 @@ export class SidebarComponent implements OnInit {
         console.log(err);
       }
     );
+    */
   }
 
 

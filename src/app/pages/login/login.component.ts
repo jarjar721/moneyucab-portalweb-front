@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       (res:any) => {
         console.log(res); // res JSON
         localStorage.setItem('token', res.token);
+        localStorage.setItem('userID', res.userID);
+        localStorage.setItem('username', res.username);
 
         setTimeout(() => {
           this.spinner.hide();

@@ -70,7 +70,7 @@ export class UsuarioService {
       Email : this.formModel.value.Email,
       Password : this.formModel.value.Passwords.Password
     };
-    return this.http.post(this.BaseURI+'Usuario/Register', body);
+    return this.http.post(this.BaseURI+'Authentication/Register', body);
   }
 
   /*
@@ -80,7 +80,7 @@ export class UsuarioService {
   * POST request, usando el URL del correspondiente.
   */
   login(formData) {
-    return this.http.post(this.BaseURI+'Usuario/Login', formData);
+    return this.http.post(this.BaseURI+'Authentication/Login', formData);
   }
 
   /*
@@ -91,7 +91,7 @@ export class UsuarioService {
   * correspondiente.
   */
   forgotPasswordEmail(formData) {
-    return this.http.post(this.BaseURI+'Usuario/ForgotPasswordEmail', formData);
+    return this.http.post(this.BaseURI+'Authentication/ForgotPasswordEmail', formData);
   }
 
   /*
@@ -102,7 +102,7 @@ export class UsuarioService {
   * correspondiente.
   */
   resetPassword(formData) {
-    return this.http.post(this.BaseURI+'Usuario/ResetPassword', formData);
+    return this.http.post(this.BaseURI+'Authentication/ResetPassword', formData);
   }
 
   /*
@@ -112,7 +112,7 @@ export class UsuarioService {
   * un POST request, usando el URL del correspondiente.
   */
   confirmAccount(body) {
-    return this.http.post(this.BaseURI+'Usuario/ConfirmedEmail', body);
+    return this.http.post(this.BaseURI+'Authentication/ConfirmedEmail', body);
   }
 
   /*
@@ -124,7 +124,7 @@ export class UsuarioService {
   */
   getUserDetails(){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard', {headers: tokenHeader});
+    return this.http.get(this.BaseURI+'Dashboard/Home', {headers: tokenHeader});
   }
 
 }
