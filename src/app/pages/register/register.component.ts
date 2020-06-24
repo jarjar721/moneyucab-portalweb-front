@@ -28,6 +28,9 @@ export class RegisterComponent implements OnInit {
     this.service.registrar().subscribe(
       (res : any) => {
         console.log(res);
+        localStorage.setItem('userID', res.userID);
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('email', res.email);
         
         setTimeout(() => {
           this.spinner.hide();

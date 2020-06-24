@@ -127,4 +127,8 @@ export class UsuarioService {
     return this.http.get(this.BaseURI+'Dashboard/Home', {headers: tokenHeader});
   }
 
+  addUsuario(body){
+    return this.http.post(this.BaseURI+'EntityUsuario/Insertar', body);
+  }
+
 }
