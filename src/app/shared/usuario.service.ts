@@ -30,6 +30,15 @@ export class UsuarioService {
   formModel = this.formBuilder.group({
     UserName : ['', Validators.required],
     Email : ['', [Validators.required, Validators.email]],
+    TipoIdentificacion: ['', Validators.required],
+    NumeroIdentificacion: ['', Validators.required],
+    Direccion: ['', Validators.required],
+    Telefono: ['', Validators.required],
+    Comercio: ['', Validators.required],
+    RazonSocial: ['', Validators.nullValidator],
+    Nombre: ['', Validators.required],
+    Apellido: ['', Validators.required],
+    FechaNacimiento: ['', Validators.required],
     Passwords : this.formBuilder.group({
       Password : ['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword : ['', Validators.required]
@@ -64,12 +73,7 @@ export class UsuarioService {
   * Toma los valores del formulario de registro y los envía mediante un
   * POST request al servidor, usando el URL correspondiente.
   */
-  registrar() {
-    var body = {
-      UserName : this.formModel.value.UserName,
-      Email : this.formModel.value.Email,
-      Password : this.formModel.value.Passwords.Password
-    };
+  registrar(body) {
     return this.http.post(this.BaseURI+'Authentication/Register', body);
   }
 
