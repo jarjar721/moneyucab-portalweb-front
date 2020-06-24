@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UsuarioService {
 
   constructor(
-    private formBuilder:FormBuilder, 
-    private http:HttpClient
+    private formBuilder: FormBuilder, 
+    private http: HttpClient
     ) { }
 
   //Si corres el servidor en Visual Studio
@@ -123,7 +123,7 @@ export class UsuarioService {
   * header del HTTP request. Esta es una capa de seguridad en la aplicación.
   */
   getUserDetails(){
-    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')});
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
     return this.http.get(this.BaseURI+'Dashboard/Home', {headers: tokenHeader});
   }
 
