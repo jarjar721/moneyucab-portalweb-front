@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('token', res.result.token);
         localStorage.setItem('userID', res.result.userID);
         localStorage.setItem('username', res.result.username);
+        localStorage.setItem('email', res.result.email);
 
         setTimeout(() => {
           this.spinner.hide();
@@ -69,13 +70,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(err); // error JSON
 
         if(err.status == 400) {
-          if (err.error.key == 11) {
+          if (err.error.codigo == 11) {
             this.toastr.error(err.error.error, '¡Usuario desconocido!');
           }
           if (err.error.codigo == 13) {
             this.toastr.error(err.error.error, '¡Credenciales inválidos!');
           }
-          if (err.error.key == 12) {
+          if (err.error.codigo == 12) {
             moment().locale('es');
             this.toastr.error(err.error.error, '¡Cuenta bloqueada!');
           }

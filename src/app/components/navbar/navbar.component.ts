@@ -33,17 +33,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.userName = localStorage.getItem('username');
-    /*
-    this.service.getUserDetails().subscribe(
-      res => {
-        this.userDetails = res;
-        console.log(res); //Checking
-      },
-      err => {
-        console.log(err);
-      }
-    );
-    */
   }
 
   /*
@@ -77,6 +66,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('userID');
     localStorage.removeItem('username');
+    localStorage.removeItem('email');
     
     this.router.navigate(['/login']);
   }

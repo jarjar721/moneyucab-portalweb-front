@@ -82,9 +82,9 @@ export class RegisterComponent implements OnInit {
       estatus: 1,
       nombre: this.formModel.value.Nombre,
       apellido: this.formModel.value.Apellido,
-      diaNacimiento: fechaNacimiento.getDay(),
-      mesNacimiento: fechaNacimiento.getMonth(),
-      anoNacimiento: fechaNacimiento.getFullYear(),
+      diaNacimiento: fechaNacimiento.getUTCDay(),
+      mesNacimiento: fechaNacimiento.getUTCMonth(),
+      anoNacimiento: fechaNacimiento.getUTCFullYear(),
       comercio: this.comercioChecked,
       razonSocial: razonSocialString
     };
@@ -107,12 +107,10 @@ export class RegisterComponent implements OnInit {
         console.log(err);
 
         if(err.status == 400) {
-          if (err.error.key == "DuplicateUserName") {
-            this.toastr.error(err.error.message, '¡Username ya ha sido tomado!');
+          if (err.error.codigo == 17) {
+            this.toastr.error(err.error.error, '¡Ya existe este usuario!');
           }
-          if (err.error.key == "DuplicateEmail") {
-            this.toastr.error(err.error.message, '¡Correo electrónico ya ha sido tomado!');
-          }
+          // Aca van validaciones de numero de identificacio y numero de telefono duplicado
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
         }
