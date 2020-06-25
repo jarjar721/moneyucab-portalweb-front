@@ -7,7 +7,7 @@
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white">¡Hola Jessica!</h1>
         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Editar perfil</a>
+        <a href="javascript:void(0)" class="btn btn-info">Editar perfil</a>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="text-center">
             <h3>
-              Jessica Jones<span class="font-weight-light">, 27</span>
+              Jessica Jones
             </h3>
             <div class="h5 font-weight-300">
               <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -84,6 +84,7 @@
         </div>
         <div class="card-body">
           <form>
+            <!-- Información del usuario -->
             <h6 class="heading-small text-muted mb-4">Información del usuario</h6>
             <div class="pl-lg-4">
               <div class="row">
@@ -118,19 +119,19 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-fecha-nacimiento">Fecha de nacimiento</label>
-                    <input type="text" id="input-fecha-nacimiento" class="form-control form-control-alternative" placeholder="Fecha de nacimiento" value="14/02/1993">
+                    <input type="text" id="input-fecha-nacimiento" class="form-control form-control-alternative" placeholder="Fecha de nacimiento">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-cedula">Cédula de identidad</label>
-                    <input type="text" id="input-cedula" class="form-control form-control-alternative" placeholder="Cédula de identidad" value="23.930.349">
+                    <label class="form-control-label" for="input-cedula">Número de identificación</label>
+                    <input type="text" id="input-cedula" class="form-control form-control-alternative" placeholder="Número de identificación">
                   </div>
                 </div>
               </div>
             </div>
             <hr class="my-4" />
-            <!-- Address -->
+            <!-- Información de contacto -->
             <h6 class="heading-small text-muted mb-4">Información de contacto</h6>
             <div class="pl-lg-4">
               <div class="row">
@@ -142,39 +143,22 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Código postal</label>
-                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="239843">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-city">Ciudad</label>
-                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="Bucharest">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-country">País</label>
-                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="Romania">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-country">Teléfono</label>
+                    <label class="form-control-label" for="input-phone-number">Teléfono</label>
                     <input type="number" id="input-phone-number" class="form-control form-control-alternative" placeholder="+584241887553">
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="my-4" />
-            <!-- Description -->
-            <h6 class="heading-small text-muted mb-4">Sobre mí</h6>
+            <!-- Información del comercio -->
+            <h6 class="heading-small text-muted mb-4">Información del comercio</h6>
             <div class="pl-lg-4">
-              <div class="form-group">
-                <label>Descripción</label>
-                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</textarea>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-razon-social">Razón social</label>
+                    <input id="input-razon-social" class="form-control form-control-alternative" placeholder="Razón social" type="text">
+                  </div>
+                </div>
               </div>
             </div>
           </form>
