@@ -83,8 +83,8 @@ export class UsuarioService {
   * Envia al servidor los datos del formulario del login mediante un
   * POST request, usando el URL del correspondiente.
   */
-  login(formData) {
-    return this.http.post(this.BaseURI+'Authentication/Login', formData);
+  login(body) {
+    return this.http.post(this.BaseURI+'Authentication/Login', body);
   }
 
   /*
