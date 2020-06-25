@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BilleteraService {
-
-  constructor(private http: HttpClient) { }
+export class DashboardService {
 
   readonly BaseURI = GlobalConstants.apiURL;
 
-  addTarjeta(body){
+  constructor(private http: HttpClient) { }
+
+  getUserInfo(username){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.post(this.BaseURI+'Billetera/tarjeta', body, {headers: tokenHeader});
+    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+username, {headers: tokenHeader});
   }
 
 }

@@ -23,6 +23,7 @@ import { OperacionesComponent } from '../../pages/operaciones/operaciones.compon
 
 // Services
 import { BilleteraService } from 'src/app/shared/billetera.service';
+import { DashboardService } from 'src/app/shared/dashboard.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,10 @@ import { BilleteraService } from 'src/app/shared/billetera.service';
     BilleterasComponent,
     OperacionesComponent
   ],
-  providers: [BilleteraService]
+  providers: [
+    BilleteraService,
+    DashboardService
+  ]
 })
 
 export class AdminLayoutModule {}

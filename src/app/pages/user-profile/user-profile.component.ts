@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/shared/dashboard.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  _username: string = localStorage.getItem('username');
+
+  _user: any;
+
+  constructor(private service: DashboardService) { }
 
   ngOnInit() {
+    this.service.getUserInfo(this._username).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this._user = res;
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+
   }
 
 }

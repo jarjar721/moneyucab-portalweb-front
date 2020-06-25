@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,7 @@ export class UsuarioService {
     private http: HttpClient
     ) { }
 
-  //Si corres el servidor en Visual Studio
-  //readonly BaseURI = 'http://localhost:49683/api/';
-  //Si corres el servidor en consola usando "dotnet run"
-  readonly BaseURI = 'http://localhost:5000/api/';
+  readonly BaseURI = GlobalConstants.apiURL;
 
   /*
   * MODEL: formModel
@@ -78,7 +76,7 @@ export class UsuarioService {
   }
 
   /*
-  * FUNCION: login(formData)
+  * FUNCION: login(body)
   * DESCRIPCIÓN:
   * Envia al servidor los datos del formulario del login mediante un
   * POST request, usando el URL del correspondiente.
