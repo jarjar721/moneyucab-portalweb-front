@@ -30,6 +30,7 @@ import { DashboardService } from 'src/app/shared/dashboard.service';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,
@@ -45,7 +46,6 @@ import { DashboardService } from 'src/app/shared/dashboard.service';
     OperacionesComponent
   ],
   providers: [
-    BilleteraService,
     DashboardService
   ]
 })

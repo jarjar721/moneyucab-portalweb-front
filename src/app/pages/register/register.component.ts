@@ -6,8 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import * as moment from 'moment';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

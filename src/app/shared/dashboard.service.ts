@@ -11,9 +11,21 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
+  //GETs
   getUserInfo(username){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
     return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+username, {headers: tokenHeader});
+  }
+
+  getUserParameters(userIntID){
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/ParametrosUsuario?idUsuario='+userIntID, {headers: tokenHeader});
+  }
+
+  //PUTs
+  updateUserInfo(body){
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+body, {headers: tokenHeader});
   }
 
 }
