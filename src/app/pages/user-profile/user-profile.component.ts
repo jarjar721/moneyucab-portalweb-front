@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
       Telefono: this._user.result.telefono,
       Nombre: this._user.persona.nombre,
       Apellido: this._user.persona.apellido,
-      FechaNacimiento: moment(fechaNacimiento).format('MM/DD/YYYY').toString(),
+      FechaNacimiento: moment(fechaNacimiento).format('MM DD YYYY').toString(),
       RazonSocial: this._user.comercio.razonSocial
     });
   }

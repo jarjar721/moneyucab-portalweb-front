@@ -23,8 +23,19 @@ export class BilleterasComponent implements OnInit {
     this.modalService.open(content, { size: 'lg', keyboard: true } );
   }
 
-  addBilletera() {
-    //this.tarjetas.push(new Tarjeta());
+  addTarjeta(event) {
+    this.modalService.dismissAll();
+    console.log(event);
+    this.tarjetas.push(new Tarjeta(
+      event.cardNumber,
+      event.cardHolder,
+      event.tipoTarjeta,
+      event.ccv,
+      event.expirationMonth,
+      event.expirationYear,
+      event.bancoEmisor
+      ));
+    console.log(this.tarjetas);
   }
 
 }

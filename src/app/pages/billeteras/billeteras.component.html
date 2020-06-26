@@ -8,7 +8,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.Titular}}</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.cardNumber }}</h5>
                   <span class="h2 font-weight-bold mb-0">350,897</span>
                 </div>
                 <div class="col-auto">
@@ -116,7 +116,7 @@
     <h4 class="modal-title">Nueva tarjeta de pago</h4>
   </div>
   <div class="modal-body">
-    <ng-payment-card></ng-payment-card>
+    <ng-payment-card (formSaved)="addTarjeta($event)"></ng-payment-card>
   </div>
 </ng-template>
 
