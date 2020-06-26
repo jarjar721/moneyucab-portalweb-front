@@ -41,11 +41,8 @@ export class PasswordRecoveryComponent implements OnInit, OnDestroy {
         console.log(err); // error JSON
 
         if(err.status == 400) {
-          if (err.error.key == "UnknownUser") {
-            this.toastr.error(err.error.message, '¡Usuario desconocido!');
-          }
-          if (err.error.key == "ForgotPasswordEmailFailed") {
-            this.toastr.error(err.error.message, '¡Error en el servidor!');
+          if (err.error.codigo == 11) {
+            this.toastr.error(err.error.error, '¡Usuario desconocido!');
           }
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Ingreso fallido!');

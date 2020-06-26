@@ -38,7 +38,8 @@
           <div class="text-center text-muted mb-4">
             <small>O registrarme con credenciales</small>
           </div>
-          <form [formGroup]="service.formModel" role="form" autocomplete="off" (submit)="onSubmit()">
+          <form [formGroup]="formModel" role="form" autocomplete="off" (submit)="onSubmit()">
+            <!-- UserName -->
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -46,8 +47,9 @@
                 </div>
                 <input class="form-control" formControlName="UserName" placeholder="Username" type="text" required>
               </div>
-              <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Este campo es obligatorio</label>
+              <label class="text-danger" *ngIf="formModel.get('UserName').touched && formModel.get('UserName').errors?.required">Este campo es obligatorio</label>
             </div>
+            <!-- Email -->
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -55,10 +57,73 @@
                 </div>
                 <input class="form-control" formControlName="Email" placeholder="Correo electrónico" type="email" required>
               </div>
-              <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Este campo es obligatorio</label>
-              <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Correo electrónico inválido</label>
+              <label class="text-danger" *ngIf="formModel.get('Email').touched && formModel.get('Email').errors?.required">Este campo es obligatorio</label>
+              <label class="text-danger" *ngIf="formModel.get('Email').touched && formModel.get('Email').errors?.email">Correo electrónico inválido</label>
             </div>
+            <!-- Nombre -->
+            <div class="form-group">
+              <input class="form-control" formControlName="Nombre" placeholder="Nombre" type="text" required>
+              <label class="text-danger" *ngIf="formModel.get('Nombre').touched && formModel.get('Nombre').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- Apellido -->
+            <div class="form-group">
+              <input class="form-control" formControlName="Apellido" placeholder="Apellido" type="text" required>
+              <label class="text-danger" *ngIf="formModel.get('Apellido').touched && formModel.get('Apellido').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- TipoIdentificacion -->
+            <div class="form-group">
+              <select class="form-control" formControlName="TipoIdentificacion" required>
+                  <option value = 1>RIF</option>
+                  <option value = 2>Cédula Extranjera</option>
+                  <option value = 3>Cédula</option>
+                  <option value = 4>Pasaporte</option>
+              </select>
+              <label class="text-danger" *ngIf="formModel.get('TipoIdentificacion').touched && formModel.get('TipoIdentificacion').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- NumeroIdentificacion -->
+            <div class="form-group">                
+                <input class="form-control" formControlName="NumeroIdentificacion" placeholder="Número de Identificación" type="number" required>
+                <label class="text-danger" *ngIf="formModel.get('NumeroIdentificacion').touched && formModel.get('NumeroIdentificacion').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- EstadoCivil -->
+            <div class="form-group">
+              <select class="form-control" formControlName="EstadoCivil" required>
+                  <option value = 1>Soltero</option>
+                  <option value = 2>Casado</option>
+              </select>
+              <label class="text-danger" *ngIf="formModel.get('EstadoCivil').touched && formModel.get('EstadoCivil').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- FechaNacimiento -->
+            <div class="form-group">
+              <input class="form-control" formControlName="FechaNacimiento" placeholder="Fecha de Nacimiento" type="date" required>
+              <label class="text-danger" *ngIf="formModel.get('FechaNacimiento').touched && formModel.get('FechaNacimiento').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- Direccion -->
+            <div class="form-group">
+                <input class="form-control" formControlName="Direccion" placeholder="Dirección" type="text" required>
+                <label class="text-danger" *ngIf="formModel.get('Direccion').touched && formModel.get('Direccion').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- Telefono -->
+            <div class="form-group">
+                <input class="form-control" formControlName="Telefono" placeholder="Teléfono de Contacto" type="number" required>
+                <label class="text-danger" *ngIf="formModel.get('Telefono').touched && formModel.get('Telefono').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- Comercio -->
+            <div class="form-group form-check-inline">
+              <label class="mr-4">¿Se está registrando como Comercio?</label>
+              <label class="custom-toggle">
+                <input type="checkbox" (change)="onCheckBoxChange($event)">
+                <span class="custom-toggle-slider rounded-circle"></span>
+              </label>
+            </div>
+            <!-- RazonSocial -->
+            <div class="form-group" *ngIf="comercioChecked">
+              <input class="form-control" formControlName="RazonSocial" placeholder="Razón Social" type="text">
+              <label class="text-danger" *ngIf="formModel.get('RazonSocial').touched && formModel.get('RazonSocial').errors?.required">Este campo es obligatorio</label>
+            </div>
+            <!-- Passwords -->
             <div formGroupName="Passwords">
+              <!-- Password -->
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
@@ -66,9 +131,10 @@
                   </div>
                   <input class="form-control" formControlName="Password" placeholder="Contraseña" type="password" required>
                 </div>
-                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Este campo es obligatorio</label>
-                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Debe tener al menos 6 caracteres</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.required">Este campo es obligatorio</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.minlength">Debe tener al menos 6 caracteres</label>
               </div>
+              <!-- ConfirmPassword -->
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
@@ -76,8 +142,8 @@
                   </div>
                   <input class="form-control" formControlName="ConfirmPassword" placeholder="Confirmar contraseña" type="password" required>
                 </div>
-                <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Este campo es obligatorio</label>
-                <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Contraseñas no coinciden</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.required">Este campo es obligatorio</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Contraseñas no coinciden</label>
               </div>
             </div>
             <div class="text-muted font-italic"><small>Calidad de la contraseña: <span class="text-success font-weight-700">alta</span></small></div>
@@ -92,7 +158,7 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4" [disabled]="!service.formModel.valid">Crear cuenta</button>
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="!formModel.valid">Crear cuenta</button>
             </div>
           </form>
         </div>

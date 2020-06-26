@@ -191,6 +191,8 @@ export class PaymentCardComponent implements OnInit {
         cardHolder: ['', Validators.compose([Validators.required, Validators.maxLength(22)])],
         expirationMonth: ['', Validators.required],
         expirationYear: ['', Validators.required],
+        tipoTarjeta: ['', Validators.required],
+        bancoEmisor: ['', Validators.required],
         ccv: [
           '',
           Validators.compose([
@@ -219,6 +221,7 @@ export class PaymentCardComponent implements OnInit {
    */
   public emitSavedCard(): void {
     const cardDetails: ICardDetails = <CardDetails>this.ccForm.value;
+    console.log(cardDetails); // testing
     this.formSaved.emit(cardDetails);
   }
 }

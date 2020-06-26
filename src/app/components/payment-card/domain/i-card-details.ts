@@ -4,4 +4,6 @@ export interface ICardDetails {
   expirationMonth: string;
   expirationYear: string;
   ccv: number;
+  tipoTarjeta: number;
+  bancoEmisor: number;
 }

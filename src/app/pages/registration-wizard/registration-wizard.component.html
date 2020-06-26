@@ -1,1 +1,59 @@
-<p>registration-wizard works!</p>
+<div class="header bg-gradient-danger py-7 py-lg-8">
+    <div class="container">
+      <div class="header-body text-center mb-3">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <h1 class="text-white">Bienvenido a MoneyUCAB</h1>
+            <p class="text-lead text-light">¡El único monedero virtual universitario del mundo!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+              <small>Llene el formulario con su información de contacto</small>
+            </div>
+            <form [formGroup]="usuarioModel" role="form" autocomplete="off" (submit)="onSubmit()">
+                <div class="form-group">
+                    <select class="form-control" formControlName="TipoIdentificacion" required>
+                        <option value = 1>RIF</option>
+                        <option value = 2>Cédula Extranjera</option>
+                        <option value = 3>Cédula</option>
+                        <option value = 4>Pasaporte</option>
+                    </select>
+                    <label class="text-danger" *ngIf="usuarioModel.get('TipoIdentificacion').touched && usuarioModel.get('TipoIdentificacion').errors?.required">Este campo es obligatorio</label>
+                </div>
+                <div class="form-group">                
+                    <input class="form-control" formControlName="NumeroIdentificacion" placeholder="Número de Identificación" type="number" required>
+                    <label class="text-danger" *ngIf="usuarioModel.get('NumeroIdentificacion').touched && usuarioModel.get('NumeroIdentificacion').errors?.required">Este campo es obligatorio</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" formControlName="Direccion" placeholder="Dirección" type="text" required>
+                    <label class="text-danger" *ngIf="usuarioModel.get('Direccion').touched && usuarioModel.get('Direccion').errors?.required">Este campo es obligatorio</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" formControlName="Telefono" placeholder="Teléfono de Contacto" type="number" required>
+                    <label class="text-danger" *ngIf="usuarioModel.get('Telefono').touched && usuarioModel.get('Telefono').errors?.required">Este campo es obligatorio</label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-4" [disabled]="!usuarioModel.valid">Siguiente</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

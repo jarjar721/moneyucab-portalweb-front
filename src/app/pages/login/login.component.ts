@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     Email : '',
     Password : ''
   }
+  comercioChecked: boolean = false;
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){
@@ -34,12 +35,29 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  onCheckBoxChange(e) {
+    if(e.target.checked) {
+      this.comercioChecked = true;
+    } else {
+      this.comercioChecked = false;
+    }
+  }
+
   onSubmit(form: NgForm) {
+    var body = {
+      email: this.formModel.Email,
+      password: this.formModel.Password,
+      comercio: this.comercioChecked
+    };
+    console.log(body);
     this.spinner.show();
-    this.service.login(form.value).subscribe(
+    this.service.login(body).subscribe(
       (res:any) => {
         console.log(res); // res JSON
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.result.token);
+        localStorage.setItem('userID', res.result.userID);
+        localStorage.setItem('username', res.result.username);
+        localStorage.setItem('email', res.result.email);
 
         setTimeout(() => {
           this.spinner.hide();
@@ -52,16 +70,15 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(err); // error JSON
 
         if(err.status == 400) {
-          if (err.error.key == "UnknownUser") {
-            this.toastr.error(err.error.message, '¡Usuario desconocido!');
+          if (err.error.codigo == 11) {
+            this.toastr.error(err.error.error, '¡Usuario desconocido!');
           }
-          if (err.error.key == "WrongPassword") {
-            this.toastr.error(err.error.message, '¡Credenciales inválidos!');
-            this.toastr.warning("Intentos restantes antes de bloquear su cuenta: " + err.error.remainingAttempts, "Intento fallido");
+          if (err.error.codigo == 13) {
+            this.toastr.error(err.error.error, '¡Credenciales inválidos!');
           }
-          if (err.error.key == "UserLockedOut") {
+          if (err.error.codigo == 12) {
             moment().locale('es');
-            this.toastr.error(err.error.message + " Su cuenta será desbloqueada en " + moment(err.error.lockoutDateTime).toNow(true), '¡Cuenta bloqueada!');
+            this.toastr.error(err.error.error, '¡Cuenta bloqueada!');
           }
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Ingreso fallido!');

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UsuarioService {
 
   constructor(
-    private formBuilder:FormBuilder, 
-    private http:HttpClient
+    private formBuilder: FormBuilder, 
+    private http: HttpClient
     ) { }
 
-  //Si corres el servidor en Visual Studio
-  //readonly BaseURI = 'http://localhost:49683/api/';
-  //Si corres el servidor en consola usando "dotnet run"
-  readonly BaseURI = 'http://localhost:5000/api/';
+  readonly BaseURI = GlobalConstants.apiURL;
 
   /*
   * MODEL: formModel
@@ -30,6 +28,15 @@ export class UsuarioService {
   formModel = this.formBuilder.group({
     UserName : ['', Validators.required],
     Email : ['', [Validators.required, Validators.email]],
+    TipoIdentificacion: ['', Validators.required],
+    NumeroIdentificacion: ['', Validators.required],
+    Direccion: ['', Validators.required],
+    Telefono: ['', Validators.required],
+    Comercio: ['', Validators.required],
+    RazonSocial: ['', Validators.nullValidator],
+    Nombre: ['', Validators.required],
+    Apellido: ['', Validators.required],
+    FechaNacimiento: ['', Validators.required],
     Passwords : this.formBuilder.group({
       Password : ['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword : ['', Validators.required]
@@ -64,23 +71,18 @@ export class UsuarioService {
   * Toma los valores del formulario de registro y los envía mediante un
   * POST request al servidor, usando el URL correspondiente.
   */
-  registrar() {
-    var body = {
-      UserName : this.formModel.value.UserName,
-      Email : this.formModel.value.Email,
-      Password : this.formModel.value.Passwords.Password
-    };
-    return this.http.post(this.BaseURI+'Usuario/Register', body);
+  registrar(body) {
+    return this.http.post(this.BaseURI+'Authentication/Register', body);
   }
 
   /*
-  * FUNCION: login(formData)
+  * FUNCION: login(body)
   * DESCRIPCIÓN:
   * Envia al servidor los datos del formulario del login mediante un
   * POST request, usando el URL del correspondiente.
   */
-  login(formData) {
-    return this.http.post(this.BaseURI+'Usuario/Login', formData);
+  login(body) {
+    return this.http.post(this.BaseURI+'Authentication/Login', body);
   }
 
   /*
@@ -91,7 +93,7 @@ export class UsuarioService {
   * correspondiente.
   */
   forgotPasswordEmail(formData) {
-    return this.http.post(this.BaseURI+'Usuario/ForgotPasswordEmail', formData);
+    return this.http.post(this.BaseURI+'Authentication/ForgotPasswordEmail', formData);
   }
 
   /*
@@ -102,7 +104,7 @@ export class UsuarioService {
   * correspondiente.
   */
   resetPassword(formData) {
-    return this.http.post(this.BaseURI+'Usuario/ResetPassword', formData);
+    return this.http.post(this.BaseURI+'Authentication/ResetPassword', formData);
   }
 
   /*
@@ -112,7 +114,7 @@ export class UsuarioService {
   * un POST request, usando el URL del correspondiente.
   */
   confirmAccount(body) {
-    return this.http.post(this.BaseURI+'Usuario/ConfirmedEmail', body);
+    return this.http.post(this.BaseURI+'Authentication/ConfirmedEmail', body);
   }
 
   /*
@@ -123,8 +125,12 @@ export class UsuarioService {
   * header del HTTP request. Esta es una capa de seguridad en la aplicación.
   */
   getUserDetails(){
-    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard', {headers: tokenHeader});
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Home', {headers: tokenHeader});
+  }
+
+  addUsuario(body){
+    return this.http.post(this.BaseURI+'EntityUsuario/Insertar', body);
   }
 
 }

@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { BilleteraCardComponent } from './billetera-card/billetera-card.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    BilleteraCardComponent
   ],
   exports: [
     FooterComponent,

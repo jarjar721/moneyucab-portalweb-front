@@ -22,12 +22,15 @@ import { BilleterasComponent } from '../../pages/billeteras/billeteras.component
 import { OperacionesComponent } from '../../pages/operaciones/operaciones.component';
 
 // Services
+import { BilleteraService } from 'src/app/shared/billetera.service';
+import { DashboardService } from 'src/app/shared/dashboard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,
@@ -41,6 +44,9 @@ import { OperacionesComponent } from '../../pages/operaciones/operaciones.compon
     MapsComponent,
     BilleterasComponent,
     OperacionesComponent
+  ],
+  providers: [
+    DashboardService
   ]
 })
 
