@@ -1,28 +1,31 @@
 export class Tarjeta {
 
+    TarjetaID: Number;
     CardNumber: String;
-    Titular: String;
     MesExpiracion: String;
     YearExpiracion: String;
-    BancoEmisor: Number;
     CCV: Number;
-    TipoTarjeta: Number;
+    Estatus: Number;
+    TipoTarjeta: String;
+    Banco: String;
 
     constructor(
+        idTarjeta,
         cardNumber,
-        titular, 
-        tipoTarjeta,
         CCV, 
         mesExpiracion, 
         yearExpiracion, 
-        bancoEmisor
+        estatus,
+        tipoTarjeta,
+        banco
     ) {
+        this.TarjetaID = idTarjeta;
         this.CardNumber = cardNumber;
-        this.Titular = titular;
-        this.TipoTarjeta = tipoTarjeta;
         this.CCV = CCV;
         this.MesExpiracion = mesExpiracion;
         this.YearExpiracion = yearExpiracion;
-        this.BancoEmisor = bancoEmisor;
+        this.Estatus = estatus;
+        this.TipoTarjeta = tipoTarjeta;
+        this.Banco = banco;
     }
 }

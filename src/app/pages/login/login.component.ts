@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     var body = {
+      usuario: "",
       email: this.formModel.Email,
       password: this.formModel.Password,
       comercio: this.comercioChecked
