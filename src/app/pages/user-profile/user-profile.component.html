@@ -84,17 +84,26 @@
               </div>
               <div class="row">
                 <!-- Nombre -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Nombre</label>
                     <input type="text" formControlName="Nombre" class="form-control form-control-alternative" placeholder="Jessica" required>
                   </div>
                 </div>
                 <!-- Apellido -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Apellido</label>
                     <input type="text" formControlName="Apellido" class="form-control form-control-alternative" placeholder="James" required>
+                  </div>
+                </div>
+                <!-- Estado Civil -->
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Estado Civil</label>
+                    <select class="form-control form-control-alternative" formControlName="EstadoCivilID" required>
+                      <option *ngFor="let estadoCivil of estadosCivilesArray" value = estadoCivil.EstadoCivilID>{{ estadoCivil.Descripcion }}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -110,7 +119,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-cedula">Número de identificación</label>
-                    <input type="number" formControlName="NumeroIdentificacion" class="form-control form-control-alternative" placeholder="23098783" required>
+                    <input type="text" formControlName="NumeroIdentificacion" class="form-control form-control-alternative" placeholder="23098783" required>
                   </div>
                 </div>
               </div>
