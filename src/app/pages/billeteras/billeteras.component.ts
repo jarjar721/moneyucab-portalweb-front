@@ -129,7 +129,9 @@ export class BilleterasComponent implements OnInit {
               tarjeta.cvc,
               tarjeta.fechaVencimiento.month,
               tarjeta.fechaVencimiento.year,
-              tarjeta.estatus
+              tarjeta.estatus,
+              tarjeta.infoAdicional.tipoTarjeta.descripcion,
+              tarjeta.infoAdicional.banco.nombre
             ));
           }
         });
@@ -145,12 +147,13 @@ export class BilleterasComponent implements OnInit {
     this.service.loadUserCuentas(localStorage.getItem('userIntID')).subscribe(
       (res:any) => {
         console.log(res); // res JSON
-        console.log(res.result);
         this.userCuentas = []; //Vaciar antes de llenar
-        res.result.forEach(cuenta => {
+        res.forEach(cuenta => {
           this.userCuentas.push(new Cuenta(
             cuenta._idCuenta,
-            cuenta._numero
+            cuenta._numero,
+            cuenta.infoAdicional._tipoCuenta.descripcion,
+            cuenta.infoAdicional._banco.nombre
           ));
         });
         console.log(this.userCuentas);
