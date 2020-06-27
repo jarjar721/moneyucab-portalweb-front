@@ -7,6 +7,8 @@ import { CardDetails } from './domain/card-details';
 import { PaymentCardService } from './service/payment-card.service';
 import { DashboardService } from 'src/app/shared/dashboard.service';
 import { ToastrService } from 'ngx-toastr';
+import { Banco } from 'src/app/models/Banco.model';
+import { TipoTarjeta } from 'src/app/models/TipoTarjeta.model';
 
 /**
  * NgPaymentCard without any dependencies other then ReactiveFormsModule
@@ -18,6 +20,10 @@ import { ToastrService } from 'ngx-toastr';
   encapsulation: ViewEncapsulation.None,
 })
 export class PaymentCardComponent implements OnInit {
+
+  @Input() PaycardBancosArray: Array<Banco>;
+  @Input() PayCardTipoTarjetaArray: Array<TipoTarjeta>;
+  
   /**
    * FormGroup available publicly
    */

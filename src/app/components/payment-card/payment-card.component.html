@@ -128,8 +128,7 @@
             class="cc-form__select"
             formControlName="tipoTarjeta"
             >
-              <option value="1">Crédito</option>
-              <option value="2">Dédito</option>
+              <option *ngFor="let TipoTarjeta of PayCardTipoTarjetaArray" value = "{{ TipoTarjeta.TipoTarjetaID }}">{{ TipoTarjeta.Descripcion }}</option>
             </select>
           </div>
         </div>
@@ -174,8 +173,7 @@
             class="cc-form__select"
             formControlName="bancoEmisor"
             >
-              <option value="1">Banesco</option>
-              <option value="2">Mercantil</option>
+              <option *ngFor="let Banco of PaycardBancosArray" value = "{{ Banco.BancoID }}">{{ Banco.Nombre }}</option>
             </select>
           </div>
           

@@ -79,7 +79,7 @@ export class BilleterasComponent implements OnInit {
   }
   
   getTipoTarjetas() {
-    this.service.loadTipoCuentas().subscribe(
+    this.service.loadTipoTarjetas().subscribe(
       (res:any) => {
         console.log(res); // res JSON
         res.forEach(tipoTarjeta => {

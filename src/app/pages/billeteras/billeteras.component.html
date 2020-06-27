@@ -118,7 +118,7 @@
     <h4 class="modal-title">Nueva tarjeta de pago</h4>
   </div>
   <div class="modal-body">
-    <ng-payment-card (formSaved)="addTarjeta($event)"></ng-payment-card>
+    <ng-payment-card [PaycardBancosArray]="bancosArray" [PayCardTipoTarjetaArray]="tipoTarjetasArray" (formSaved)="addTarjeta($event)"></ng-payment-card>
   </div>
 </ng-template>
 

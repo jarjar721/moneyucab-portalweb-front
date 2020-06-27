@@ -21,9 +21,7 @@ export const ROUTES: RouteInfo[] = [
     // Argon Template Routes
     { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
     { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' }
 ];
 
 @Component({
@@ -46,17 +44,6 @@ export class SidebarComponent implements OnInit {
       this.isCollapsed = true;
    });
    this.userName = localStorage.getItem('username');
-   /*
-   this.service.getUserDetails().subscribe(
-      res => {
-        this.userDetails = res;
-        console.log(res); //Checking
-      },
-      err => {
-        console.log(err);
-      }
-    );
-    */
   }
 
 
