@@ -32,7 +32,8 @@ export class AuthGuard implements CanActivate {
       } else {
         if(helper.isTokenExpired(token)) // Prueba para verificar que el token expira
           console.log('Token expired!'); // Prueba para verificar que el token expira
-        this.router.navigate(['/login']);
+          localStorage.clear();
+          this.router.navigate(['/login']);
         return false;
       }
 

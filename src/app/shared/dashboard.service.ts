@@ -11,34 +11,7 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  /* USER PROFILE */
-  //GETs
-  getUserInfo(username){
-    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+username, {headers: tokenHeader});
-  }
-
-  getUserParameters(userIntID){
-    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard/ParametrosUsuario?idUsuario='+userIntID, {headers: tokenHeader});
-  }
-
-  //PUTs
-  updateUserInfo(body){
-    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+body, {headers: tokenHeader});
-  }
-
-
-
-
-
-
-
-
-  
-
-  /* BILLETERAS */
+  /* CONSULTAS BÁSICAS */
   /* GET BASIC BILLETERA INFO*/
   loadBancos() {
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
@@ -55,6 +28,53 @@ export class DashboardService {
     return this.http.get(this.BaseURI+'Dashboard/TiposCuentas', {headers: tokenHeader});
   }
 
+  loadEstadosCiviles() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/EstadosCiviles', {headers: tokenHeader});
+  }
+
+
+
+
+
+
+
+
+
+
+  /* USER PROFILE */
+  //GETs
+  getUserInfo(username){
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+username, {headers: tokenHeader});
+  }
+
+  getUserParameters(userIntID){
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/ParametrosUsuario?idUsuario='+userIntID, {headers: tokenHeader});
+  }
+
+  //UPDATESs
+  updateUserInfo(body) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.put(this.BaseURI+'EntityUsuario/Editar', body, {headers: tokenHeader});
+  }
+
+  updatePersonaComercioInfo(body) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.post(this.BaseURI+'Authentication/Modification', body, {headers: tokenHeader});
+  }
+
+
+
+
+
+
+
+
+
+
+  /* BILLETERAS */
   /* GET USER BILLETERA INFO */
   loadUserTarjetas(userIntID) {
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
