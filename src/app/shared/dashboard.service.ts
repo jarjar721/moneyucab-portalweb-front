@@ -11,6 +11,7 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
+  /* USER PROFILE */
   //GETs
   getUserInfo(username){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
@@ -27,5 +28,56 @@ export class DashboardService {
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
     return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+body, {headers: tokenHeader});
   }
+
+  /* BILLETERAS */
+  /* GET BASIC BILLETERA INFO*/
+  loadBancos() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Bancos', {headers: tokenHeader});
+  }
+  
+  loadTipoTarjetas() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/TiposTarjetas', {headers: tokenHeader});
+  }
+
+  loadTipoCuentas() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/TiposCuentas', {headers: tokenHeader});
+  }
+
+  /* GET USER BILLETERA INFO */
+  loadUserTarjetas(userIntID) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Tarjetas?IdUsuario='+userIntID, {headers: tokenHeader});
+  }
+
+  loadUserCuentas(userIntID) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Cuentas?IdUsuario='+userIntID, {headers: tokenHeader});
+  }
+
+  /* CREATES */
+  createTarjeta(body) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.post(this.BaseURI+'Billetera/tarjeta', body, {headers: tokenHeader});
+  }
+
+  createCuenta(body) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.post(this.BaseURI+'Billetera/cuenta', body, {headers: tokenHeader});
+  }
+
+  /* DELETES */
+  deleteTarjeta(TarjetaId) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.delete(this.BaseURI+'Billetera/EliminarTarjeta?TarjetaId='+TarjetaId, {headers: tokenHeader});
+  }
+
+  deleteCuenta(CuentaId) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.delete(this.BaseURI+'Billetera/EliminarCuenta?CuentaId='+CuentaId, {headers: tokenHeader});
+  }
+
 
 }

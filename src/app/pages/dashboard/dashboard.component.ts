@@ -8,6 +8,7 @@ import {
   chartExample1,
   chartExample2
 } from "../../variables/charts";
+import { DashboardService } from 'src/app/shared/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,9 +23,25 @@ export class DashboardComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
 
-  constructor() { }
+  _username: string = localStorage.getItem('username');
+  _user: any;
+
+  constructor(
+    private service: DashboardService
+  ) { }
 
   ngOnInit() {
+
+    this.service.getUserInfo(this._username).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this._user = res;
+        localStorage.setItem('userIntID', this._user.result.idUsuario);
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -52,10 +69,6 @@ export class DashboardComponent implements OnInit {
 			data: chartExample1.data
 		});
   }
-
-
-
-
 
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;

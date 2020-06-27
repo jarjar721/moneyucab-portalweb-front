@@ -5,6 +5,8 @@ import { CardValidator } from './validator/card-validator';
 import { ICardDetails } from './domain/i-card-details';
 import { CardDetails } from './domain/card-details';
 import { PaymentCardService } from './service/payment-card.service';
+import { DashboardService } from 'src/app/shared/dashboard.service';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * NgPaymentCard without any dependencies other then ReactiveFormsModule
@@ -157,7 +159,11 @@ export class PaymentCardComponent implements OnInit {
   @Output()
   public formSaved: EventEmitter<ICardDetails> = new EventEmitter<CardDetails>();
 
-  constructor(private _ccService: PaymentCardService, private _fb: FormBuilder) {}
+  constructor(
+    private _ccService: PaymentCardService,
+    private _fb: FormBuilder,
+    private service: DashboardService
+    ) {}
 
   public ngOnInit(): void {
     this.buildForm();
@@ -221,7 +227,29 @@ export class PaymentCardComponent implements OnInit {
    */
   public emitSavedCard(): void {
     const cardDetails: ICardDetails = <CardDetails>this.ccForm.value;
-    console.log(cardDetails); // testing
-    this.formSaved.emit(cardDetails);
+
+    var body = {
+      idUsuario: parseInt(localStorage.getItem('userIntID')),
+		  idTipoTarjeta: parseInt(cardDetails.tipoTarjeta.toString()),
+		  idBanco: parseInt(cardDetails.bancoEmisor.toString()),
+		  numero: parseInt(cardDetails.cardNumber),
+		  ano: parseInt(cardDetails.expirationYear),
+		  mes: parseInt(cardDetails.expirationMonth),
+		  dia: 1,
+		  cvc: parseInt(cardDetails.ccv.toString()),
+		  estatus: 1 
+    }
+    console.log(body);
+
+    this.service.createTarjeta(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.formSaved.emit(cardDetails);
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
   }
+  
 }

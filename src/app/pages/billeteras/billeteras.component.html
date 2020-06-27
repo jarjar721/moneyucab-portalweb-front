@@ -2,47 +2,49 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
-      <div class="row" *ngFor="let card of tarjetas">
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
+      <div class="row mb-3">
+        <div class="col-xl-4 col-lg-6" *ngFor="let card of userTarjetas">
+          <div class="tarjeta card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.cardNumber }}</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.CardNumber }}</h5>
+                  <span class="h2 font-weight-bold mb-0">CCV: {{ card.CCV }}</span>
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
+                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                    <i class="fas fa-credit-card"></i>
                   </div>
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-nowrap mr-2">Fecha de expiración: </span>
+                <span class="text-danger">{{ card.MesExpiracion }}/{{ card.YearExpiracion }}</span>
+                <a class="btn btn-sm btn-danger float-right" (click)="desafiliarTarjeta(card.TarjetaID)">Desafiliar</a>
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="row" *ngFor="let card of cuentas">
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
+      <div class="row">
+        <div class="col-xl-4 col-lg-6" *ngFor="let card of userCuentas">
+          <div class="cuenta card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.Titular}}</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{ card.NumeroCuenta}}</h5>
+                  <span class="h2 font-weight-bold mb-0">Cuenta Bancaria</span>
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-university"></i>
                   </div>
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-nowrap mr-2">Estado de la cuenta:</span>
+                <span class="text-success">Activa</span>
+                <a (click)="desafiliarCuenta(card.CuentaID)" class="btn btn-sm btn-danger float-right">Desafiliar</a>
               </p>
             </div>
           </div>
@@ -85,7 +87,7 @@
             </div>
             <!-- Afiliar Cuentas Card -->
             <div class="col-xl-5 col-lg-6">
-              <div class="card card-stats add-billetera mb-4 mb-xl-0">
+              <div class="card card-stats add-billetera mb-4 mb-xl-0" (click)="open(cuentaModal)">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
@@ -122,10 +124,47 @@
 
 <ng-template #cuentaModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Nueva cuenta bancaria</h4>
+    <h5 class="modal-title" id="exampleModalLabel">Nueva cuenta bancaria</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-  </div>
+  <form [formGroup]="cuentaFormModel" (submit)="onCuentaSubmit()">
+    <div class="modal-body">
+      <div class="row">
+        <!-- Numero de Cuenta  -->
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label" for="input-numero-cuenta">Número de Cuenta</label>
+            <input type="number" formControlName="NumeroCuenta" class="form-control form-control-alternative" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Tipo de Cuenta -->
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-first-name">Tipo de Cuenta</label>
+            <select class="form-control" formControlName="TipoCuentaID" required>
+              <option *ngFor="let tipoCuenta of tipoCuentasArray" value = "{{ tipoCuenta.TipoCuentaID }}">{{ tipoCuenta.Descripcion }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Banco -->
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-last-name">Banco</label>
+            <select class="form-control" formControlName="BancoID" required>
+              <option *ngFor="let banco of bancosArray" value = "{{ banco.BancoID }}">{{ banco.Nombre }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="close()" data-dismiss="modal">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
 </ng-template>
+
