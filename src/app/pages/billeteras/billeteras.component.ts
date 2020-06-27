@@ -122,14 +122,16 @@ export class BilleterasComponent implements OnInit {
         console.log(res); // res JSON
         this.userTarjetas = []; //Vaciar antes de llenar
         res.forEach(tarjeta => {
-          this.userTarjetas.push(new Tarjeta(
-            tarjeta.idTarjeta,
-            tarjeta.numero,
-            tarjeta.cvc,
-            tarjeta.fechaVencimiento.month,
-            tarjeta.fechaVencimiento.year,
-            tarjeta.estatus
-          ));
+          if(tarjeta.estatus != 2) {
+            this.userTarjetas.push(new Tarjeta(
+              tarjeta.idTarjeta,
+              tarjeta.numero,
+              tarjeta.cvc,
+              tarjeta.fechaVencimiento.month,
+              tarjeta.fechaVencimiento.year,
+              tarjeta.estatus
+            ));
+          }
         });
         console.log(this.userTarjetas);
       },

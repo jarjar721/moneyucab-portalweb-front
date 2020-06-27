@@ -29,6 +29,15 @@ export class DashboardService {
     return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+body, {headers: tokenHeader});
   }
 
+
+
+
+
+
+
+
+  
+
   /* BILLETERAS */
   /* GET BASIC BILLETERA INFO*/
   loadBancos() {
