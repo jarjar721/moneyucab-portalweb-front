@@ -23,10 +23,15 @@ export class DashboardService {
     return this.http.get(this.BaseURI+'Dashboard/ParametrosUsuario?idUsuario='+userIntID, {headers: tokenHeader});
   }
 
-  //PUTs
-  updateUserInfo(body){
+  //UPDATESs
+  updateUserInfo(body) {
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+body, {headers: tokenHeader});
+    return this.http.post(this.BaseURI+'EntityUsuario/Editar', body, {headers: tokenHeader});
+  }
+
+  updatePersonaComercioInfo(body) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.post(this.BaseURI+'Authentication/Modification', body, {headers: tokenHeader});
   }
 
 
@@ -36,7 +41,7 @@ export class DashboardService {
 
 
 
-  
+
 
   /* BILLETERAS */
   /* GET BASIC BILLETERA INFO*/

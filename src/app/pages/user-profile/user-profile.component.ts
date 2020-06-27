@@ -75,11 +75,61 @@ export class UserProfileComponent implements OnInit {
   onSubmit() {
     this.formModel.disable();
     this._editingForm = false;
+    this.saveUserInfo();
+    this.savePersonaComercioInfo();
   }
 
   onEdit() {
     this._editingForm = true;
     this.formModel.enable();
+  }
+
+  saveUserInfo() {
+    var body = {
+      idUsuario: parseInt(localStorage.getItem('userID')),
+      idTipoUsuario: 1,
+      idTipoIdentificacion: 0,
+      idEntity: localStorage.getItem('userID'),
+      usuario: this.formModel.value.Email,
+      fechaRegistro: 'date',
+      nroIdentificacion: parseInt(this.formModel.value.NumeroIdentificacion),
+      email: this.formModel.value.Email,
+      telefono: this.formModel.value.Telefono,
+      direccion: this.formModel.value.Direccion,
+      estatus: 1
+    };
+
+    this.service.updateUserInfo(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.toastr.success('Sus datos han sido guardados exitosamente','¡Usuario modificado!');
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  savePersonaComercioInfo() {
+    var body = {
+      nombre: this.formModel.value.Nombre,
+      apellido: this.formModel.value.Apellido,
+      telefono: this.formModel.value.Telefono,
+      direccion: this.formModel.value.Direccion,
+      razonSocial: this.formModel.value.RazonSocial,
+      idEstadoCivil: 0,
+      idUsuario: parseInt(localStorage.getItem('userID'))
+    };
+
+    this.service.updatePersonaComercioInfo(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.toastr.success('Sus datos han sido guardados exitosamente','¡Datos personales modificado!');
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
   }
  
 }
