@@ -182,7 +182,7 @@ export class UserProfileComponent implements OnInit {
 
   saveUserInfo() {
     var body = {
-      idUsuario: parseInt(localStorage.getItem('userID')),
+      idUsuario: parseInt(localStorage.getItem('userIntID')),
       idTipoUsuario: parseInt(this._user.result.idTipoUsuario),
       idTipoIdentificacion: parseInt(this._user.tipoIdentificacion.idTipoIdentificacion),
       idEntity: localStorage.getItem('userID'),
@@ -198,6 +198,7 @@ export class UserProfileComponent implements OnInit {
       direccion: this.formModel.value.Direccion,
       estatus: 1
     };
+    console.log(body);
 
     this.service.updateUserInfo(body).subscribe(
       (res:any) => {
@@ -218,8 +219,9 @@ export class UserProfileComponent implements OnInit {
       direccion: this.formModel.value.Direccion,
       razonSocial: this.formModel.value.RazonSocial,
       idEstadoCivil: parseInt(this.formModel.value.EstadoCivilID),
-      idUsuario: parseInt(localStorage.getItem('userID'))
+      idUsuario: parseInt(localStorage.getItem('userIntID'))
     };
+    console.log(body);
 
     this.service.updatePersonaComercioInfo(body).subscribe(
       (res:any) => {
@@ -235,6 +237,7 @@ export class UserProfileComponent implements OnInit {
  
   saveConfigurations() {
     var body = {
+      idUsuario: parseInt(localStorage.getItem('userIntID')),
       idParametro: parseInt(this.parametroFormModel.value.ParametroID),
       validacion: this.parametroFormModel.value.Validacion.toString(),
       estatus: 1
