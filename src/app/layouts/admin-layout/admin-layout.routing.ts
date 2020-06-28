@@ -7,7 +7,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { BilleterasComponent } from '../../pages/billeteras/billeteras.component';
 import { OperacionesComponent } from '../../pages/operaciones/operaciones.component';
-import { RecargasComponent } from 'src/app/pages/recargas/recargas.component';
+//import { RecargasComponent } from 'src/app/pages/recargas/recargas.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -16,6 +16,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'billeteras',     component: BilleterasComponent },
-    { path: 'operaciones',    component: OperacionesComponent },
-    { path: 'recargas',       component: RecargasComponent }
+    { path: 'operaciones',    component: OperacionesComponent }
+    //{ path: 'recargas',       component: RecargasComponent }
 ];
