@@ -7,7 +7,6 @@
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white">¡Hola {{ _user.persona.nombre }}!</h1>
         <p class="text-white mt-0 mb-5">Esta es tu página de perfil. Aca podrás ver y editar tus datos personales, configurar los parámetros de cuenta y más.</p>
-        <a (click)="onEdit()" class="btn btn-info">Editar perfil</a>
       </div>
     </div>
   </div>
@@ -53,16 +52,18 @@
       <div class="card bg-secondary shadow">
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
-            <div class="col-8">
-              <h3 class="mb-0">Datos personales</h3>
+            <div class="col-4">
+              <h3 class="mb-0" *ngIf="_viewDatosPersonalesForm">Datos Personales</h3>
+              <h3 class="mb-0" *ngIf="_viewConfigurationsForm">Configuraciones</h3>
             </div>
-            <div class="col-4 text-right">
-              <a href="javascript:void(0)" class="btn btn-sm btn-primary">Configuraciones</a>
+            <div class="col-8 d-inline text-right">
+              <a (click)="onViewUserData()" class="btn btn-sm btn-info">Datos Personales</a>
+              <a (click)="onViewConfigurations()" class="btn btn-sm btn-secondary">Configuraciones</a>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="formModel" (submit)="onSubmit()">
+          <form [formGroup]="formModel" (submit)="onSubmit()" *ngIf="_viewDatosPersonalesForm">
             <!-- Información del usuario -->
             <h6 class="heading-small text-muted mb-4">Información del usuario</h6>
             <div class="pl-lg-4">
@@ -102,7 +103,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Estado Civil</label>
                     <select class="form-control form-control-alternative" formControlName="EstadoCivilID" required>
-                      <option *ngFor="let estadoCivil of estadosCivilesArray" value = estadoCivil.EstadoCivilID>{{ estadoCivil.Descripcion }}</option>
+                      <option *ngFor="let estadoCivil of estadosCivilesArray" value = "{{ estadoCivil.EstadoCivilID }}">{{ estadoCivil.Descripcion }}</option>
                     </select>
                   </div>
                 </div>
@@ -145,6 +146,7 @@
                 </div>
               </div>
             </div>
+            <hr class="my-4" *ngIf="_hasComercio"/>
             <!-- Información del comercio -->
             <h6 class="heading-small text-muted mb-4" *ngIf="_hasComercio">Información del comercio</h6>
             <div class="pl-lg-4" *ngIf="_hasComercio">
@@ -157,10 +159,51 @@
                 </div>
               </div>
             </div>
-            <!-- Información de contacto -->
+            <!-- Submit button -->
             <div *ngIf="_editingForm">
               <hr class="my-4" />
               <button type="submit" class="btn btn-success mt-4" [disabled]="!formModel.valid">Guardar</button>            
+            </div>
+          </form>
+          <form [formGroup]="parametroFormModel" (submit)="saveConfigurations()" *ngIf="_viewConfigurationsForm">
+            <h6 class="heading-small text-muted mb-4">Establecer un Parámetro</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <!-- Parametro -->
+                <div class="col-lg-7">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Parametros</label>
+                    <select class="form-control form-control-alternative" formControlName="ParametroID" required>
+                      <option *ngFor="let parametro of parametrosArray" value = "{{ parametro.ParametroID }}">{{ parametro.Nombre }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Validacion -->
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Validación</label>
+                    <input type="number" formControlName="Validacion" class="form-control form-control-alternative" required>
+                  </div>
+                </div>
+                <!-- Add button -->
+                <div class="col-lg-2">
+                  <label class="form-control-label" for="input-last-name"> </label>
+                  <button type="submit" class="btn btn-success mt-4" [disabled]="!parametroFormModel.valid"><i class="fas fa-plus"></i></button>            
+                </div>
+              </div>
+            </div>
+            <h6 class="heading-small text-muted mb-4">Mis Parámetros</h6>
+
+
+
+          </form>
+          <form [formGroup]="passwordsFormModel" (submit)="changePassword()" *ngIf="_viewChangePasswordForm">
+            <hr class="my-4" />
+            <h6 class="heading-small text-muted mb-4">Cambiar contraseña</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                
+              </div>
             </div>
           </form>
         </div>

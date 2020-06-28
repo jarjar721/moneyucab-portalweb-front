@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GlobalConstants } from '../common/global-constants';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,33 @@ export class DashboardService {
   tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
 
   constructor(private http: HttpClient) { }
+
+  /*
+  * FUNCION: comparePasswords(fb:FormGroup)
+  * DESCRIPCIÓN:
+  * Compara los valores introducidos en los campos de contraseñas cuando
+  * un usuario se registra. 
+  * -- Si los valores de las contraseñas NO coinciden, se crea un error
+  *    para ser mostrado en la vista.
+  * -- Si las constraseñas SÍ coinciden, no se crea el error.
+  */
+  comparePasswords(formGroup: FormGroup) {
+    let confirmPasswordControl = formGroup.get('ConfirmPassword');
+    //passwordMismatch
+    if(confirmPasswordControl.errors == null || 'passwordMismatch' in confirmPasswordControl.errors){
+      if(formGroup.get('Password').value != formGroup.get('ConfirmPassword').value)
+        confirmPasswordControl.setErrors({ passwordMismatch : true });
+      else
+        confirmPasswordControl.setErrors(null);
+    }
+  }
+
+
+
+
+
+
+
 
 
 
@@ -75,6 +103,11 @@ export class DashboardService {
 
   getUserParameters(userIntID){
     return this.http.get(this.BaseURI+'Dashboard/ParametrosUsuario?idUsuario='+userIntID, {headers: this.tokenHeader});
+  }
+
+  /* CREATES */
+  createParametro(body) {
+    return this.http.post(this.BaseURI+'Transfer/EstablecerParametro', body, {headers: this.tokenHeader});
   }
 
   //UPDATESs

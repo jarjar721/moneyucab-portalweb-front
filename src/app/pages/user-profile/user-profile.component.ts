@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment'
 import { EstadoCivil } from 'src/app/models/EstadoCivil.model';
+import { Parametro } from 'src/app/models/Parametro.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,19 +15,25 @@ export class UserProfileComponent implements OnInit {
 
   _username: string = localStorage.getItem('username');
   _user: any;
+
   _hasComercio: boolean = false;
-  _editingForm: boolean = false;
+  _editingForm: boolean = true;
   _viewDatosPersonalesForm: boolean = true;
-  _viewParametrosForm: boolean = false;
+  _viewConfigurationsForm: boolean = false;
   _viewChangePasswordForm: boolean = false;
 
   estadosCivilesArray: Array<EstadoCivil> = [];
+  parametrosArray: Array<Parametro> = [];
 
   constructor(
     private service: DashboardService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService
     ) { }
+
+
+
+
 
   formModel = this.formBuilder.group({
     UserName : ['', Validators.required],
@@ -41,10 +48,31 @@ export class UserProfileComponent implements OnInit {
     EstadoCivilID: ['', Validators.required]
   });
 
+  parametroFormModel = this.formBuilder.group({
+    ParametroID: ['', Validators.required],
+    Validacion: ['', Validators.required]
+  });
+
+  passwordsFormModel = this.formBuilder.group({
+    OldPassword: ['', Validators.required],
+    NewPasswords : this.formBuilder.group({
+      Password : ['', [Validators.required, Validators.minLength(6)]],
+      ConfirmPassword : ['', Validators.required]
+    }, {
+      validator : this.service.comparePasswords
+    })
+  });
+
+
+
+
+
   ngOnInit() {
-    this.formModel.disable();
+    this.formModel.get('NumeroIdentificacion').disable();
     this.getUser();
     this.getEstadosCiviles();
+    this.getParametros();
+    this.getUserParametros();
   }
 
   getUser() {
@@ -53,6 +81,17 @@ export class UserProfileComponent implements OnInit {
         console.log(res); // res JSON
         this._user = res;
         this.loadProfileForm();
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  getUserParametros() {
+    this.service.getUserParameters(localStorage.getItem('userIntID')).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
       },
       err => {
         console.log(err); // error JSON
@@ -73,6 +112,25 @@ export class UserProfileComponent implements OnInit {
           ));
         });
         console.log(this.estadosCivilesArray);
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  getParametros() {
+    this.service.loadParametros().subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        res.forEach(parametro => {
+          this.parametrosArray.push(new Parametro(
+            parametro.idParametro,
+            parametro.nombre,
+            parametro.estatus
+          ));
+        });
+        console.log(this.parametrosArray);
       },
       err => {
         console.log(err); // error JSON
@@ -106,16 +164,20 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formModel.disable();
-    this._editingForm = false;
     this.saveUserInfo();
     this.savePersonaComercioInfo();
   }
 
-  onEdit() {
-    this._editingForm = true;
-    this.formModel.enable();
-    this.formModel.get('NumeroIdentificacion').disable();
+  onViewConfigurations() {
+    this._viewConfigurationsForm = true;
+    this._viewChangePasswordForm = true;
+    this._viewDatosPersonalesForm = false;
+  }
+
+  onViewUserData() {
+    this._viewConfigurationsForm = false;
+    this._viewChangePasswordForm = false;
+    this._viewDatosPersonalesForm = true;
   }
 
   saveUserInfo() {
@@ -171,4 +233,27 @@ export class UserProfileComponent implements OnInit {
     );
   }
  
+  saveConfigurations() {
+    var body = {
+      idParametro: parseInt(this.parametroFormModel.value.ParametroID),
+      validacion: this.parametroFormModel.value.Validacion.toString(),
+      estatus: 1
+    }
+    console.log(body);
+    this.service.createParametro(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.getUserParametros();
+        this.toastr.success('Su parámetro ha sido guardado exitosamente','¡Parámetro establecido!');
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  changePassword() {
+
+  }
+
 }
