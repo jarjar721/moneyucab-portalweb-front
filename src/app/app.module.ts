@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 // Page Components under no layout
 import { LandingComponent } from './pages/landing/landing.component';
 import { RegistrationWizardComponent } from './pages/registration-wizard/registration-wizard.component';
+import { RecargasComponent } from './pages/recargas/recargas.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { RegistrationWizardComponent } from './pages/registration-wizard/registr
     AdminLayoutComponent,
     AuthLayoutComponent,
     LandingComponent,
-    RegistrationWizardComponent
+    RegistrationWizardComponent,
+    RecargasComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
