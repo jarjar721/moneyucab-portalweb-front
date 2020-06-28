@@ -9,4 +9,5 @@ export class TipoTarjeta {
         this.Descripcion = descripcion;
         this.Estatus = estatus;
     }
+    
 }

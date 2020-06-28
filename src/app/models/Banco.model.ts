@@ -9,4 +9,5 @@ export class Banco {
         this.Nombre = nombre;
         this.Estatus = estatus;
     }
+    
 }

@@ -33,6 +33,36 @@ export class DashboardService {
     return this.http.get(this.BaseURI+'Dashboard/EstadosCiviles', {headers: tokenHeader});
   }
 
+  loadTiposIdentificacion() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/TiposIdentificaciones', {headers: tokenHeader});
+  }
+
+  loadTiposOperaciones() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/TiposOperaciones', {headers: tokenHeader});
+  }
+
+  loadParametros() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Parametros', {headers: tokenHeader});
+  }
+
+  loadTiposParametros() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/TiposParametros', {headers: tokenHeader});
+  }
+
+  loadFrecuencias() {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Dashboard/Frecuencias', {headers: tokenHeader});
+  }
+
+
+
+
+
+
 
 
 
@@ -108,5 +138,18 @@ export class DashboardService {
     return this.http.delete(this.BaseURI+'Billetera/EliminarCuenta?CuentaId='+CuentaId, {headers: tokenHeader});
   }
 
+
+
+
+
+
+
+
+
+  /* OPERACIONES */
+  getSaldoMonedero(userIntID) {
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.BaseURI+'Monedero/Consultar?idUsuario='+userIntID, {headers: tokenHeader});
+  }
 
 }

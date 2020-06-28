@@ -11,4 +11,5 @@ export class EstadoCivil {
         this.Codigo = codigo;
         this.Estatus = estatus;
     }
+    
 }

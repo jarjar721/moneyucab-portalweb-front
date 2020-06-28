@@ -11,4 +11,5 @@ export class Cuenta {
         this.TipoCuenta = tipoCuenta;
         this.Banco = banco;
     }
+    
 }

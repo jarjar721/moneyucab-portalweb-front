@@ -10,14 +10,8 @@ export class Tarjeta {
     Banco: String;
 
     constructor(
-        idTarjeta,
-        cardNumber,
-        CCV, 
-        mesExpiracion, 
-        yearExpiracion, 
-        estatus,
-        tipoTarjeta,
-        banco
+        idTarjeta, cardNumber, CCV, mesExpiracion, 
+        yearExpiracion, estatus, tipoTarjeta, banco
     ) {
         this.TarjetaID = idTarjeta;
         this.CardNumber = cardNumber;
@@ -28,4 +22,5 @@ export class Tarjeta {
         this.TipoTarjeta = tipoTarjeta;
         this.Banco = banco;
     }
+
 }
