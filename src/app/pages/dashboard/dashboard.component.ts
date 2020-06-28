@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
   _username: string = localStorage.getItem('username');
   _user: any;
+  _saldoMonedero: Number;
 
   constructor(
     private service: DashboardService
@@ -32,16 +33,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.service.getUserInfo(this._username).subscribe(
-      (res:any) => {
-        console.log(res); // res JSON
-        this._user = res;
-        localStorage.setItem('userIntID', this._user.result.idUsuario);
-      },
-      err => {
-        console.log(err); // error JSON
-      }
-    );
+    this.loadUser();
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -73,6 +65,32 @@ export class DashboardComponent implements OnInit {
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;
     this.salesChart.update();
+  }
+
+  loadUser() {
+    this.service.getUserInfo(this._username).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this._user = res;
+        localStorage.setItem('userIntID', this._user.result.idUsuario);
+        this.getSaldo(this._user.result.idUsuario);
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  getSaldo(userIntID) {
+    this.service.getSaldoMonedero(userIntID).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this._saldoMonedero = res;
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
   }
 
 }
