@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -57,7 +58,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    var fechaRegistro = new Date();
+    var fechaRegistro = moment();
     var fechaNacimiento = new Date(this.formModel.value.FechaNacimiento);
     var razonSocialString = this.formModel.value.RazonSocial;
     if ( razonSocialString == null) {
@@ -71,9 +72,9 @@ export class RegisterComponent implements OnInit {
       idTipoUsuario: 1,
       idTipoIdentificacion: parseInt(this.formModel.value.TipoIdentificacion),
       idEstadoCivil: parseInt(this.formModel.value.EstadoCivil),
-      diaRegistro: fechaRegistro.getDay(),
-      mesRegistro: fechaRegistro.getMonth(),
-      anoRegistro: fechaRegistro.getFullYear(),
+      diaRegistro: fechaRegistro.get('date'),
+      mesRegistro: fechaRegistro.get('month') + 1,
+      anoRegistro: fechaRegistro.get('year'),
       nroIdentificacion: this.formModel.value.NumeroIdentificacion,
       telefono: this.formModel.value.Telefono.toString(),
       direccion: this.formModel.value.Direccion,

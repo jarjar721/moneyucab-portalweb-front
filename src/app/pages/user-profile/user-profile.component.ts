@@ -15,9 +15,11 @@ export class UserProfileComponent implements OnInit {
 
   _username: string = localStorage.getItem('username');
   _user: any;
+  _userParameters: any;
 
   _hasComercio: boolean = false;
   _editingForm: boolean = true;
+  _userHasParameters: boolean = false;
   _viewDatosPersonalesForm: boolean = true;
   _viewConfigurationsForm: boolean = false;
   _viewChangePasswordForm: boolean = false;
@@ -92,6 +94,10 @@ export class UserProfileComponent implements OnInit {
     this.service.getUserParameters(localStorage.getItem('userIntID')).subscribe(
       (res:any) => {
         console.log(res); // res JSON
+        if (res.length != 0) {
+          this._userHasParameters = true;
+          this._userParameters = res;
+        }
       },
       err => {
         console.log(err); // error JSON
@@ -253,6 +259,31 @@ export class UserProfileComponent implements OnInit {
         console.log(err); // error JSON
       }
     );
+  }
+
+  establecerParametro(idParametro, validacion, estatus) {
+    var body = {
+      idUsuario: parseInt(localStorage.getItem('userIntID')),
+      idParametro: parseInt(idParametro),
+      validacion: validacion,
+      estatus: estatus
+    }
+    console.log(body);
+    this.service.createParametro(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.getUserParametros();
+        if (body.estatus = 1) {
+          this.toastr.success('Su parámetro ha sido activado exitosamente','¡Parámetro activado!');
+        } else {
+          this.toastr.success('Su parámetro ha sido inactivado exitosamente','¡Parámetro inactivado!');
+        }
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+
   }
 
   changePassword() {

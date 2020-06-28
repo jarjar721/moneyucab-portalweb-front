@@ -183,6 +183,7 @@ export class BilleterasComponent implements OnInit {
     this.service.createCuenta(body).subscribe(
       (res:any) => {
         console.log(res); // res JSON
+        this.modalService.dismissAll();
         this.getUserCuentas();
         this.toastr.success('Ahora podrá realizar operaciones con su cuenta bancaria','¡Cuenta bancaria afiliada!');
       },

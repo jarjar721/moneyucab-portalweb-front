@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   _username: string = localStorage.getItem('username');
   _user: any;
-  _saldoMonedero: Number;
+  _saldoMonedero: number = 0;
 
   constructor(
     private service: DashboardService
@@ -41,11 +41,9 @@ export class DashboardComponent implements OnInit {
     ];
     this.data = this.datasets[0];
 
-
     var chartOrders = document.getElementById('chart-orders');
 
     parseOptions(Chart, chartOptions());
-
 
     var ordersChart = new Chart(chartOrders, {
       type: 'bar',
