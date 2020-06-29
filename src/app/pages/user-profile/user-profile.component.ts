@@ -56,7 +56,7 @@ export class UserProfileComponent implements OnInit {
   });
 
   passwordsFormModel = this.formBuilder.group({
-    OldPassword: ['', Validators.required],
+    OldPassword: ['', [Validators.required, Validators.minLength(6)]],
     NewPasswords : this.formBuilder.group({
       Password : ['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword : ['', Validators.required]
