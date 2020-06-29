@@ -161,8 +161,7 @@
             </div>
             <!-- Submit button -->
             <div *ngIf="_editingForm">
-              <hr class="my-4" />
-              <button type="submit" class="btn btn-success mt-4" [disabled]="!formModel.valid">Guardar</button>            
+              <button type="submit" class="btn btn-success mt-4 float-right" [disabled]="!formModel.valid">Guardar</button>            
             </div>
           </form>
           <form [formGroup]="parametroFormModel" (submit)="saveConfigurations()" *ngIf="_viewConfigurationsForm">
@@ -242,7 +241,29 @@
             <h6 class="heading-small text-muted mb-4">Cambiar contraseña</h6>
             <div class="pl-lg-4">
               <div class="row">
-                
+                <div class="col-6">
+                  <!-- Old Password -->
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Contraseña Actual</label>
+                    <input type="password" formControlName="OldPassword" class="form-control form-control-alternative" required>
+                  </div>
+                  <div formGroupName="NewPasswords">
+                    <!-- New Password -->
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Nueva Contraseña</label>
+                      <input type="password" formControlName="Password" class="form-control form-control-alternative" required>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Confirmar Contraseña</label>
+                      <input type="password" formControlName="ConfirmPassword" class="form-control form-control-alternative" required>
+                    </div>
+                    <button type="submit" class="btn btn-success float-right" [disabled]="!passwordsFormModel.valid">Guardar</button>            
+                  </div>
+                </div>
+                <div class="col-6">
+                  
+                </div>
               </div>
             </div>
           </form>

@@ -35,7 +35,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
-                <h3 class="mb-0">Recargas realizadas</h3>
+                <h3 class="mb-0">Recargas</h3>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <h6 class="heading-small text-muted mb-4">Formas de Pago</h6>
-                <div class="tarjeta card card-stats mb-4 mb-xl-0" *ngFor="let card of userTarjetas" (click)="isTarjeta(card.TarjetaID)">
+                <div class="card card-stats mb-4 mb-xl-3" *ngFor="let card of userTarjetas" (click)="isTarjeta(card.TarjetaID)" [ngClass]="{ 'selected': card.TarjetaID == selectedTarjetaID && _recargarConTarjeta }">
                   <div class="card-body">
                     <div class="row">
                       <div class="col">
@@ -62,7 +62,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="cuenta card card-stats mb-4 mb-xl-0" *ngFor="let card of userCuentas" (click)="isCuenta(card.CuentaID)">
+                <div class="card card-stats mb-4 mb-xl-3" *ngFor="let card of userCuentas" (click)="isCuenta(card.CuentaID)" [ngClass]="{ 'selected': card.CuentaID == selectedCuentaID && _recargarConCuenta }">
                   <div class="card-body">
                     <div class="row">
                       <div class="col">
@@ -90,7 +90,7 @@
                       <label class="form-control-label" for="input-username">Monto</label>
                       <input type="number" formControlName="Monto" class="form-control form-control-alternative" required>
                     </div>
-                    <button type="submit" class="btn btn-success mt-4" [disabled]="!recargaFormModel.valid">Guardar</button>            
+                    <button type="submit" class="btn btn-success mt-4 float-right" [disabled]="!recargaFormModel.valid || (!_recargarConTarjeta && !_recargarConCuenta)">Guardar</button>            
                   </div>
                 </form>
               </div>

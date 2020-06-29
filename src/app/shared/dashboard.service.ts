@@ -110,6 +110,10 @@ export class DashboardService {
     return this.http.post(this.BaseURI+'Transfer/EstablecerParametro', body, {headers: this.tokenHeader});
   }
 
+  changePassword(body) {
+    return this.http.post(this.BaseURI+'Authentication/ChangePassword', body, {headers: this.tokenHeader});
+  }
+
   //UPDATESs
   updateUserInfo(body) {
     return this.http.put(this.BaseURI+'EntityUsuario/Editar', body, {headers: this.tokenHeader});
@@ -171,6 +175,14 @@ export class DashboardService {
 
   getOperacionesMonedero(userIntID) {
     return this.http.get(this.BaseURI+'HistorialOperaciones/HistorialOperacionesMonedero?idUsuario='+userIntID, {headers: this.tokenHeader});
+  }
+
+  getOperacionesTarjeta(idTarjeta) {
+    return this.http.get(this.BaseURI+'HistorialOperaciones/HistorialOperacionesTarjeta?idTarjeta='+idTarjeta, {headers: this.tokenHeader});
+  }
+
+  getOperacionesCuenta(idCuenta) {
+    return this.http.get(this.BaseURI+'HistorialOperaciones/HistorialOperacionesCuenta?idCuenta='+idCuenta, {headers: this.tokenHeader});
   }
 
   recargarConTarjeta(body) {

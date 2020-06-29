@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   constructor(
     private service: UsuarioService, 
@@ -59,12 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('userID', res.result.userID);
         localStorage.setItem('username', res.result.username);
         localStorage.setItem('email', res.result.email);
-
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
-        
-        this.router.navigateByUrl('/dashboard');
+        this.getUserInfo();
       },
       err => {
         this.spinner.hide(); // Al retornar error, el spinner se esconde inmediatamente
@@ -89,7 +84,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  getUserInfo() {
+    this.service.getUserInfo(localStorage.getItem('username')).subscribe(
+      (res:any) => {
+        localStorage.setItem('userIntID', res.result.idUsuario);
+
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
+        
+        this.router.navigateByUrl('/dashboard');
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

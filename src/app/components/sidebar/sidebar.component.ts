@@ -17,9 +17,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Tablero de control',  icon: 'ni-tv-2 text-primary', class: '' },
     { path: '/operaciones', title: 'Operaciones',  icon:'ni-planet text-blue', class: '' },
     { path: '/billeteras', title: 'Billeteras',  icon:'ni-pin-3 text-blue', class: '' },
-    { path: '/recargas', title: 'Recargas',  icon:'ni-pin-3 text-orange', class: '' },
+    { path: '/recargas', title: 'Recargas',  icon:'ni-pin-3 text-orange', class: '' }
     // Argon Template Routes
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' }
+    //{ path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' }
 ];
 
 @Component({

@@ -288,7 +288,23 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePassword() {
+    var body = {
+      idUsuario: localStorage.getItem('userID'),
+      resetPasswordToken: this.passwordsFormModel.value.OldPassword,
+      newPassword: this.passwordsFormModel.value.NewPasswords.Password
+    }
+    console.log(body);
 
+    this.service.changePassword(body).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.passwordsFormModel.reset();
+        this.toastr.success('Su contraseña ha sido cambiada exitosamente','¡Contraseña cambiada!');
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
   }
 
 }

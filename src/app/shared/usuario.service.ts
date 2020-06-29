@@ -117,16 +117,11 @@ export class UsuarioService {
     return this.http.post(this.BaseURI+'Authentication/ConfirmedEmail', body);
   }
 
-  /*
-  * FUNCION: getUserDetails()
-  * DESCRIPCIÓN:
-  * Solicita los datos del usuario mediante un GET request enviada al servidor.
-  * Para ello, es necesario enviar el token creado al iniciar sesión en el 
-  * header del HTTP request. Esta es una capa de seguridad en la aplicación.
-  */
-  getUserDetails(){
+
+
+  getUserInfo(username){
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(this.BaseURI+'Dashboard/Home', {headers: tokenHeader});
+    return this.http.get(this.BaseURI+'Dashboard/InformacionPersona?Usuario='+username, {headers: tokenHeader});
   }
 
   addUsuario(body){
