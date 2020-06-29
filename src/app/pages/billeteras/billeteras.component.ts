@@ -149,12 +149,14 @@ export class BilleterasComponent implements OnInit {
         console.log(res); // res JSON
         this.userCuentas = []; //Vaciar antes de llenar
         res.forEach(cuenta => {
-          this.userCuentas.push(new Cuenta(
-            cuenta._idCuenta,
-            cuenta._numero,
-            cuenta.infoAdicional._tipoCuenta.descripcion,
-            cuenta.infoAdicional._banco.nombre
-          ));
+          if(cuenta.infoAdicional._tipoCuenta.idTipoCuenta != 3) {
+            this.userCuentas.push(new Cuenta(
+              cuenta._idCuenta,
+              cuenta._numero,
+              cuenta.infoAdicional._tipoCuenta.descripcion,
+              cuenta.infoAdicional._banco.nombre
+            ));
+          }
         });
         console.log(this.userCuentas);
       },
