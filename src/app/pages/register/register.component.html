@@ -73,9 +73,9 @@
             <!-- TipoIdentificacion -->
             <div class="form-group">
               <select class="form-control" formControlName="TipoIdentificacion" required>
-                  <option value = 1>RIF</option>
-                  <option value = 2>Cédula Extranjera</option>
-                  <option value = 3>Cédula</option>
+                  <option value = 1>Jurídica</option>
+                  <option value = 2>Identificación Extranjera</option>
+                  <option value = 3>Identificación Nacionale</option>
                   <option value = 4>Pasaporte</option>
               </select>
               <label class="text-danger" *ngIf="formModel.get('TipoIdentificacion').touched && formModel.get('TipoIdentificacion').errors?.required">Este campo es obligatorio</label>
@@ -88,8 +88,8 @@
             <!-- EstadoCivil -->
             <div class="form-group">
               <select class="form-control" formControlName="EstadoCivil" required>
-                  <option value = 1>Soltero</option>
-                  <option value = 2>Casado</option>
+                  <option value = 2>Soltero</option>
+                  <option value = 1>Casado</option>
               </select>
               <label class="text-danger" *ngIf="formModel.get('EstadoCivil').touched && formModel.get('EstadoCivil').errors?.required">Este campo es obligatorio</label>
             </div>
