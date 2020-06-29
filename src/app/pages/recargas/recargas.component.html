@@ -110,31 +110,25 @@
             </div>
           </div>
           <div class="table-responsive">
-            <!-- Projects table -->
+            <!-- Recargas table -->
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Billetera</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Monto</th>
-                  <th scope="col">Estado</th>
+                  <th scope="col">Referencia</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let operacion of userOperaciones">
                   <th scope="row">
-                    BBVA Provincial
+                    {{ operacion.Fecha }}
                   </th>
                   <td>
-                    10/02/2020
+                    <i class="fas fa-arrow-up text-success mr-3"></i> {{ operacion.Monto }} BsS
                   </td>
                   <td>
-                    <i class="fas fa-arrow-up text-success mr-3"></i> 340,00 BsS
-                  </td>
-                  <td>
-                    <span class="badge badge-dot mr-4">
-                      <i class="bg-success"></i> Completada
-                    </span>
+                    {{ operacion.Referencia }}
                   </td>
                 </tr>
               </tbody>

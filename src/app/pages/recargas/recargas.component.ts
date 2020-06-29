@@ -6,6 +6,8 @@ import { Tarjeta } from 'src/app/models/Tarjeta.model';
 import { Cuenta } from 'src/app/models/Cuenta.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { OperacionMonedero } from 'src/app/models/OperacionMonedero.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-recargas',
@@ -22,6 +24,9 @@ export class RecargasComponent implements OnInit {
 
   userCuentas: Array<Cuenta> = [];
   selectedCuentaID: Number;
+
+  userOperaciones: Array<OperacionMonedero> = [];
+  selectedOperacionID: Number;
 
   _recargarConTarjeta: boolean = false;
   _recargarConCuenta: boolean = false;
@@ -40,6 +45,7 @@ export class RecargasComponent implements OnInit {
     this.getSaldo();
     this.getUserTarjetas();
     this.getUserCuentas();
+    this.loadOperacionesMonedero();
   }
 
   getSaldo() {
@@ -47,6 +53,32 @@ export class RecargasComponent implements OnInit {
       (res:any) => {
         console.log(res); // res JSON
         this._saldoMonedero = res;
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  loadOperacionesMonedero() {
+    this.service.getOperacionesMonedero(this._userIntID).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.userOperaciones = [];
+        res.forEach(operacion => {
+          let fecha = new Date(
+            operacion.fecha.year,
+            operacion.fecha.month,
+            operacion.fecha.day
+            );
+          this.userOperaciones.push(new OperacionMonedero(
+            operacion.idOperacionMonedero,
+            operacion.monto,
+            moment(fecha).format('DD/MM/YYYY').toString(),
+            operacion.referencia
+          ));
+        });
+        console.log(this.userOperaciones);
       },
       err => {
         console.log(err); // error JSON
@@ -136,8 +168,10 @@ export class RecargasComponent implements OnInit {
     this.service.recargarConCuenta(body).subscribe(
       (res:any) => {
         console.log(res); // res JSON
+        this.recargaFormModel.reset();
         this.toastr.success('Su recarga ha sido procesada exitosamente','¡Recarga procesada!');
         this.getSaldo();
+        this.loadOperacionesMonedero();
       },
       err => {
         console.log(err); // error JSON
@@ -157,8 +191,10 @@ export class RecargasComponent implements OnInit {
     this.service.recargarConTarjeta(body).subscribe(
       (res:any) => {
         console.log(res); // res JSON
+        this.recargaFormModel.reset();
         this.toastr.success('Su recarga ha sido procesada exitosamente','¡Recarga procesada!');
         this.getSaldo();
+        this.loadOperacionesMonedero();
       },
       err => {
         console.log(err); // error JSON

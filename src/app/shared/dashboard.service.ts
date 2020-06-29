@@ -169,6 +169,10 @@ export class DashboardService {
     return this.http.get(this.BaseURI+'Monedero/Consultar?idUsuario='+userIntID, {headers: this.tokenHeader});
   }
 
+  getOperacionesMonedero(userIntID) {
+    return this.http.get(this.BaseURI+'HistorialOperaciones/HistorialOperacionesMonedero?idUsuario='+userIntID, {headers: this.tokenHeader});
+  }
+
   recargarConTarjeta(body) {
     return this.http.post(this.BaseURI+'Monedero/RecargaMonederoTarjeta', body, {headers: this.tokenHeader});
   }
