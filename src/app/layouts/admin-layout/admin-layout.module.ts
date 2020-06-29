@@ -20,6 +20,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { BilleterasComponent } from '../../pages/billeteras/billeteras.component';
 import { OperacionesComponent } from '../../pages/operaciones/operaciones.component';
+import { RecargasComponent } from 'src/app/pages/recargas/recargas.component';
 
 // Services
 import { BilleteraService } from 'src/app/shared/billetera.service';
@@ -43,7 +44,8 @@ import { DashboardService } from 'src/app/shared/dashboard.service';
     IconsComponent,
     MapsComponent,
     BilleterasComponent,
-    OperacionesComponent
+    OperacionesComponent,
+    RecargasComponent
   ],
   providers: [
     DashboardService

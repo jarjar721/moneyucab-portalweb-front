@@ -8,7 +8,10 @@ import {
   chartExample1,
   chartExample2
 } from "../../variables/charts";
+
 import { DashboardService } from 'src/app/shared/dashboard.service';
+import { OperacionMonedero } from 'src/app/models/OperacionMonedero.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +27,10 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
 
   _username: string = localStorage.getItem('username');
+  _userIntID: number;
   _user: any;
   _saldoMonedero: number = 0;
+  userOperaciones: Array<OperacionMonedero> = [];
 
   constructor(
     private service: DashboardService
@@ -71,7 +76,9 @@ export class DashboardComponent implements OnInit {
         console.log(res); // res JSON
         this._user = res;
         localStorage.setItem('userIntID', this._user.result.idUsuario);
-        this.getSaldo(this._user.result.idUsuario);
+        this._userIntID = parseInt(localStorage.getItem('userIntID'));
+        this.getSaldo(this._userIntID);
+        this.loadOperacionesMonedero(this._userIntID)
       },
       err => {
         console.log(err); // error JSON
@@ -84,6 +91,32 @@ export class DashboardComponent implements OnInit {
       (res:any) => {
         console.log(res); // res JSON
         this._saldoMonedero = res;
+      },
+      err => {
+        console.log(err); // error JSON
+      }
+    );
+  }
+
+  loadOperacionesMonedero(userIntID) {
+    this.service.getOperacionesMonedero(userIntID).subscribe(
+      (res:any) => {
+        console.log(res); // res JSON
+        this.userOperaciones = [];
+        res.forEach(operacion => {
+          let fecha = new Date(
+            operacion.fecha.year,
+            operacion.fecha.month,
+            operacion.fecha.day
+            );
+          this.userOperaciones.push(new OperacionMonedero(
+            operacion.idOperacionMonedero,
+            operacion.monto,
+            moment(fecha).format('DD/MM/YYYY').toString(),
+            operacion.referencia
+          ));
+        });
+        console.log(this.userOperaciones);
       },
       err => {
         console.log(err); // error JSON

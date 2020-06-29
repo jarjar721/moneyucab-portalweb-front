@@ -252,6 +252,7 @@ export class UserProfileComponent implements OnInit {
     this.service.createParametro(body).subscribe(
       (res:any) => {
         console.log(res); // res JSON
+        this.parametroFormModel.reset();
         this.getUserParametros();
         this.toastr.success('Su parámetro ha sido guardado exitosamente','¡Parámetro establecido!');
       },
