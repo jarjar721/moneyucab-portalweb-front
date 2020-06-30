@@ -42,18 +42,32 @@ export class RegisterComponent implements OnInit {
       })
     });
 
-    comercioChecked: boolean;
+    comercioChecked: boolean = false;
+    politicasChecked: boolean = false;
 
   ngOnInit() {
     this.formModel.reset();
     this.comercioChecked = false;
+    this.politicasChecked = false;
   }
 
   onCheckBoxChange(e) {
     if(e.target.checked) {
       this.comercioChecked = true;
+      console.log('comercioChecked ' + this.comercioChecked);
     } else {
       this.comercioChecked = false;
+      console.log('comercioChecked ' + this.comercioChecked);
+    }
+  }
+
+  onPoliticasCheckBoxChange(e) {
+    if(e.target.checked) {
+      this.politicasChecked = true;
+      console.log('politicasChecked ' + this.politicasChecked);
+    } else {
+      this.politicasChecked = false;
+      console.log('politicasChecked ' + this.politicasChecked);
     }
   }
 

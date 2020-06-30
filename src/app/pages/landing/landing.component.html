@@ -54,7 +54,7 @@
             <li class="nav-item btn-contact-us pl-4 pl-lg-0">
               <button 
                 class="btn btn-info"
-                routerLinkActive="active" [routerLink]="['/landing']"
+                routerLinkActive="active" [routerLink]="['/login']"
                 >
                 Iniciar Sesión
               </button>
@@ -73,8 +73,8 @@
         ¡El único monedero virtual universitario del mundo!
       </h6>
       <div>
-        <button class="btn btn-opacity-light mr-1">Registrarme</button>
-        <button class="btn btn-opacity-success ml-1">Iniciar Sesión</button>
+        <button class="btn btn-opacity-light mr-1" routerLinkActive="active" [routerLink]="['/register']">Registrarme</button>
+        <button class="btn btn-opacity-success ml-1" routerLinkActive="active" [routerLink]="['/login']">Iniciar Sesión</button>
       </div>
       <img src="assets/img/landing/Group171.svg" alt="" class="img-fluid" />
     </div>
@@ -83,10 +83,10 @@
     <div class="container">
       <section class="features-overview" id="features-section">
         <div class="content-header">
-          <h2>How does it works</h2>
+          <h2>¿Cómo funciona?</h2>
           <h6 class="section-subtitle text-muted">
-            One theme that serves as an easy-to-use operational toolkit<br />that
-            meets customer's needs.
+            La plataforma MoneyUCAB está compuesta por tres aplicaciones:<br />that
+            el Portal Web, el Monedero Virtual y el Post Virtual.
           </h6>
         </div>
         <div class="d-md-flex justify-content-between">
@@ -99,8 +99,8 @@
               />
               <h5 class="py-3">MoneyUCAB<br />Portal Web</h5>
               <p class="text-muted">
-                Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer turpis, suspendisse.
+                Recarga el saldo de tu monedero virtual, visualiza el 
+                estado de tus operaciones y configura los datos de tu cuenta.
               </p>
               <a href="javascript:void(0)"><p class="readmore-link">Conocer más</p></a>
             </div>
@@ -114,8 +114,8 @@
               />
               <h5 class="py-3">MoneyUCAB<br />Monedero Virtual</h5>
               <p class="text-muted">
-                Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer turpis, suspendisse.
+                Realiza pagos a tus comercios más frecuentes y a otras personas afiliadas 
+                a la plataforma MoneyUCAB. Maneja tus pagos y solicita reintegros.
               </p>
               <a href="javascript:void(0)"><p class="readmore-link">Conocer más</p></a>
             </div>
@@ -129,8 +129,8 @@
               />
               <h5 class="py-3">MoneyUCAB<br />Post Virtual</h5>
               <p class="text-muted">
-                Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer turpis, suspendisse.
+                Enfocado para comercios y empresas. Realiza cierres de caja al 
+                finalizar la jornada, visualiza tus operaciones y muchas más.
               </p>
               <a href="javascript:void(0)"><p class="readmore-link">Conocer más</p></a>
             </div>
@@ -144,16 +144,16 @@
             data-aos="fade-right"
           >
             <h3 class="m-0">
-              We Offer a Full Range<br />of Digital Marketing Services!
+              ¡Ofrecemos una amplia gama de<br /> servicios financieros digitales!
             </h3>
             <div class="col-lg-7 col-xl-6 p-0">
               <p class="py-4 m-0 text-muted">
-                Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer turpis, suspendisse.
+                Nuestros servicios nos distinguen de la competencia por ser 
+                innovadores, rápidos y sencillos.
               </p>
               <p class="font-weight-medium text-muted">
-                Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer
+                Nos adaptamos a las necesidades de nuestros clientes, ofreciendo 
+                seguridad y portabilidad.
               </p>
             </div>
           </div>
@@ -176,17 +176,17 @@
             data-aos="fade-left"
           >
             <h3 class="m-0">
-              Leading Digital Agency<br />for Business Solution.
+              ¡Servicio digital líder<br /> en soluciones de financieras!
             </h3>
             <div class="col-lg-9 col-xl-8 p-0">
               <p class="py-4 m-0 text-muted">
-                Power-packed with impressive features and well-optimized, this
-                template is designed to provide the best performance in all
-                circumstances.
+                Reforzada con opciones impresionantes y optimizadas, esta 
+                aplicación está diseñada para proveer el mejor rendimiento bajo 
+                cualquier circunstancia.
               </p>
               <p class="pb-2 font-weight-medium text-muted">
-                Its smart features make it a powerful stand-alone website
-                building tool.
+                Nuestras funcionalidades inteligentes nos convierten en una 
+                herramienta robusta de negocios.
               </p>
             </div>
             <button class="btn btn-info">Conocer más</button>
@@ -337,9 +337,9 @@
       <section class="customer-feedback" id="feedback-section">
         <div class="row">
           <div class="col-12 text-center pb-5">
-            <h2>What our customers have to say</h2>
+            <h2>Testimonios de nuestros clientes</h2>
             <h6 class="section-subtitle text-muted m-0">
-              Lorem ipsum dolor sit amet, tincidunt vestibulum.
+              MoneyUCAB es utilizado por organizaciones multinacionales e individuos de renombre en el mercado.
             </h6>
           </div>
           <div class="owl-carousel owl-theme grid-margin">

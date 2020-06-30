@@ -21,26 +21,14 @@
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
       <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-4"><small>Registrarme con</small></div>
-          <div class="text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon mr-4">
-              <span class="btn-inner--icon"><img src="assets/img/icons/common/github.svg"></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="assets/img/icons/common/google.svg"></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
-          </div>
-        </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>O registrarme con credenciales</small>
+            <small>Completa el formulario para crear una cuenta</small>
           </div>
           <form [formGroup]="formModel" role="form" autocomplete="off" (submit)="onSubmit()">
             <!-- UserName -->
             <div class="form-group">
+              <label class="form-control-label">Username</label>
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
@@ -51,6 +39,7 @@
             </div>
             <!-- Email -->
             <div class="form-group">
+              <label class="form-control-label">Correo electrónico</label>
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
@@ -62,16 +51,19 @@
             </div>
             <!-- Nombre -->
             <div class="form-group">
+              <label class="form-control-label">Nombre</label>
               <input class="form-control" formControlName="Nombre" placeholder="Nombre" type="text" required>
               <label class="text-danger" *ngIf="formModel.get('Nombre').touched && formModel.get('Nombre').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- Apellido -->
             <div class="form-group">
+              <label class="form-control-label">Apellido</label>
               <input class="form-control" formControlName="Apellido" placeholder="Apellido" type="text" required>
               <label class="text-danger" *ngIf="formModel.get('Apellido').touched && formModel.get('Apellido').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- TipoIdentificacion -->
             <div class="form-group">
+              <label class="form-control-label">Tipo de Identificación</label>
               <select class="form-control" formControlName="TipoIdentificacion" required>
                   <option value = 1>Jurídica</option>
                   <option value = 2>Identificación Extranjera</option>
@@ -81,12 +73,14 @@
               <label class="text-danger" *ngIf="formModel.get('TipoIdentificacion').touched && formModel.get('TipoIdentificacion').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- NumeroIdentificacion -->
-            <div class="form-group">                
-                <input class="form-control" formControlName="NumeroIdentificacion" placeholder="Número de Identificación" type="number" required>
-                <label class="text-danger" *ngIf="formModel.get('NumeroIdentificacion').touched && formModel.get('NumeroIdentificacion').errors?.required">Este campo es obligatorio</label>
+            <div class="form-group">    
+              <label class="form-control-label">Número de Identificación</label>
+              <input class="form-control" formControlName="NumeroIdentificacion" placeholder="Número de Identificación" type="number" required>
+              <label class="text-danger" *ngIf="formModel.get('NumeroIdentificacion').touched && formModel.get('NumeroIdentificacion').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- EstadoCivil -->
             <div class="form-group">
+              <label class="form-control-label">Estado Civil</label>
               <select class="form-control" formControlName="EstadoCivil" required>
                   <option value = 2>Soltero</option>
                   <option value = 1>Casado</option>
@@ -95,18 +89,21 @@
             </div>
             <!-- FechaNacimiento -->
             <div class="form-group">
+              <label class="form-control-label">Fecha de Nacimiento</label>
               <input class="form-control" formControlName="FechaNacimiento" placeholder="Fecha de Nacimiento" type="date" required>
               <label class="text-danger" *ngIf="formModel.get('FechaNacimiento').touched && formModel.get('FechaNacimiento').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- Direccion -->
             <div class="form-group">
-                <input class="form-control" formControlName="Direccion" placeholder="Dirección" type="text" required>
-                <label class="text-danger" *ngIf="formModel.get('Direccion').touched && formModel.get('Direccion').errors?.required">Este campo es obligatorio</label>
+              <label class="form-control-label">Dirección</label>
+              <input class="form-control" formControlName="Direccion" placeholder="Dirección" type="text" required>
+              <label class="text-danger" *ngIf="formModel.get('Direccion').touched && formModel.get('Direccion').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- Telefono -->
             <div class="form-group">
-                <input class="form-control" formControlName="Telefono" placeholder="Teléfono de Contacto" type="number" required>
-                <label class="text-danger" *ngIf="formModel.get('Telefono').touched && formModel.get('Telefono').errors?.required">Este campo es obligatorio</label>
+              <label class="form-control-label">Teléfono</label>
+              <input class="form-control" formControlName="Telefono" placeholder="Teléfono de Contacto" type="number" required>
+              <label class="text-danger" *ngIf="formModel.get('Telefono').touched && formModel.get('Telefono').errors?.required">Este campo es obligatorio</label>
             </div>
             <!-- Comercio -->
             <div class="form-group form-check-inline">
@@ -118,6 +115,7 @@
             </div>
             <!-- RazonSocial -->
             <div class="form-group" *ngIf="comercioChecked">
+              <label class="form-control-label">Razón social</label>
               <input class="form-control" formControlName="RazonSocial" placeholder="Razón Social" type="text">
               <label class="text-danger" *ngIf="formModel.get('RazonSocial').touched && formModel.get('RazonSocial').errors?.required">Este campo es obligatorio</label>
             </div>
@@ -125,6 +123,7 @@
             <div formGroupName="Passwords">
               <!-- Password -->
               <div class="form-group">
+                <label class="form-control-label">Contraseña</label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
@@ -136,6 +135,7 @@
               </div>
               <!-- ConfirmPassword -->
               <div class="form-group">
+                <label class="form-control-label">Confirmar Contraseña</label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
@@ -146,19 +146,18 @@
                 <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Contraseñas no coinciden</label>
               </div>
             </div>
-            <div class="text-muted font-italic"><small>Calidad de la contraseña: <span class="text-success font-weight-700">alta</span></small></div>
             <div class="row my-4">
               <div class="col-12">
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="politicasCheckbox" type="checkbox" required>
+                  <input class="custom-control-input" id="politicasCheckbox" (change)="onPoliticasCheckBoxChange($event)" type="checkbox" required>
                   <label class="custom-control-label" for="politicasCheckbox">
-                    <span class="text-muted">Estoy de acuerdo con las <a href="#!">Políticas de Privacidad</a></span>
+                    <span class="text-muted">Estoy de acuerdo con las <a href="javascript:void(0)">Políticas de Privacidad</a></span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4" [disabled]="!formModel.valid">Crear cuenta</button>
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="!formModel.valid || !politicasChecked">Crear cuenta</button>
             </div>
           </form>
         </div>
