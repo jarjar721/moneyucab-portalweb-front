@@ -109,7 +109,9 @@ export class RegisterComponent implements OnInit {
           if (err.error.codigo == 17) {
             this.toastr.error(err.error.error, '¡Ya existe este usuario!');
           }
-          // Aca van validaciones de numero de identificacio y numero de telefono duplicado
+          if (err.error.codigo == -2147467259) {
+            this.toastr.error('Número de identificación ya está registrado', '¡Ya existe este usuario!');
+          }
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
         }
