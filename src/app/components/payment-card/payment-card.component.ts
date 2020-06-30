@@ -9,6 +9,7 @@ import { DashboardService } from 'src/app/shared/dashboard.service';
 import { ToastrService } from 'ngx-toastr';
 import { Banco } from 'src/app/models/Banco.model';
 import { TipoTarjeta } from 'src/app/models/TipoTarjeta.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * NgPaymentCard without any dependencies other then ReactiveFormsModule
@@ -168,7 +169,8 @@ export class PaymentCardComponent implements OnInit {
   constructor(
     private _ccService: PaymentCardService,
     private _fb: FormBuilder,
-    private service: DashboardService
+    private service: DashboardService,
+    private modalService: NgbModal
     ) {}
 
   public ngOnInit(): void {
@@ -256,6 +258,10 @@ export class PaymentCardComponent implements OnInit {
         console.log(err); // error JSON
       }
     );
+  }
+
+  close() {
+    this.modalService.dismissAll();
   }
   
 }

@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row mb-8 justify-content-center">
-    <div class="col-7">
-      <div #ccBoxFlip class="cc-box--flip">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-sm-12">
+      <div #ccBoxFlip class="cc-box--flip mb-8">
         <div class="cc-box__front">
           <div class="cc-box__logo">
             <p style="margin-bottom: 0;">{{ getCardType(ccNumber.value) | uppercase }}</p>
@@ -58,11 +58,11 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row mt-8 justify-content-center">
     <div class="col-12">
       <form role="form" [formGroup]="ccForm" autocomplete="off">
         <div class="form-group row">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="cc-number" class="cc-form__label cc-form__label--first"
             >Número de la tarjeta</label>
             <input #ccNumber class="cc-form__input" id="cc-number"
@@ -120,7 +120,7 @@
               {{ ccNumChecksumInvalidTxt }}
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="cc-number" class="cc-form__label cc-form__label--first"
             >Tipo de tarjeta</label>
             <select
@@ -133,7 +133,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="cc-holder-name" class="cc-form__label">Titular de la tarjeta</label>
             <input
               class="cc-form__input"
@@ -166,7 +166,7 @@
               {{ cardHolderTooLongTxt }}
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="cc-holder-name" class="cc-form__label">Banco</label>
             <select
             id="bank"
@@ -176,7 +176,6 @@
               <option *ngFor="let Banco of PaycardBancosArray" value = "{{ Banco.BancoID }}">{{ Banco.Nombre }}</option>
             </select>
           </div>
-          
         </div>
         <div class="form-group row">
           <div class="col-md-4">
@@ -298,6 +297,9 @@
           {{ ccvContainsLettersTxt }}
         </div>
         <div class="form-group float-right">
+          <button type="button" class="btn btn-danger"
+            (click)="close()"
+          >Cancelar</button>
           <button type="submit" class="btn btn-primary"
             aria-label="submit" (click)="emitSavedCard()" (keydown.enter)="emitSavedCard()"
           >Guardar</button>

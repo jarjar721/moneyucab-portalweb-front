@@ -81,6 +81,9 @@ export class LoginComponent implements OnInit {
             moment().locale('es');
             this.toastr.error(err.error.error, '¡Cuenta bloqueada!');
           }
+          if (err.error.codigo == -2147467259) {
+            this.toastr.error(err.error.error, '¡Credenciales inválidos!');
+          }
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Ingreso fallido!');
         }

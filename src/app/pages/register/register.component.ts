@@ -110,7 +110,7 @@ export class RegisterComponent implements OnInit {
             this.toastr.error(err.error.error, '¡Ya existe este usuario!');
           }
           if (err.error.codigo == -2147467259) {
-            this.toastr.error('Número de identificación ya está registrado', '¡Ya existe este usuario!');
+            this.toastr.error(err.error.error, '¡Registro invalido!');
           }
         } else {
           this.toastr.error('¡Ups! Algo ha sucedido', '¡Registro fallido!');
