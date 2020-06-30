@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, Validators } from '@angular/forms';
 
 //Models
 import { Tarjeta } from 'src/app/models/Tarjeta.model';
@@ -11,7 +12,7 @@ import { Banco } from 'src/app/models/Banco.model';
 //Services
 import { DashboardService } from 'src/app/shared/dashboard.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-billeteras',
@@ -35,13 +36,13 @@ export class BilleterasComponent implements OnInit {
     private service: DashboardService,
     private toastr: ToastrService,
     private formBuilder: FormBuilder
-    ) { }
+  ) { }
 
-    cuentaFormModel = this.formBuilder.group({
-      NumeroCuenta : ['', Validators.required],
-      TipoCuentaID : ['', [Validators.required, Validators.email]],
-      BancoID: ['', Validators.required]
-    });
+  cuentaFormModel = this.formBuilder.group({
+    NumeroCuenta : ['', Validators.required],
+    TipoCuentaID : ['', [Validators.required, Validators.email]],
+    BancoID: ['', Validators.required]
+  });
 
   ngOnInit() {
     this.getBancos();

@@ -11,16 +11,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class PasswordResetComponent implements OnInit {
 
+  userID: string;
+  resetPasswordToken: string;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private service: UsuarioService,
     private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    ) { }
-
-  userID: string;
-  resetPasswordToken: string;
+  ) { }
 
   formModel = this.formBuilder.group({
     Passwords: this.formBuilder.group({
@@ -46,6 +46,7 @@ export class PasswordResetComponent implements OnInit {
       resetPasswordToken: this.resetPasswordToken,
       newPassword: this.formModel.value.Passwords.Password
     };
+
     this.service.resetPassword(body).subscribe(
       (res : any) => {
         console.log(res);
