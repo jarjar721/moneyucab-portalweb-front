@@ -42,7 +42,7 @@ export class PasswordResetComponent implements OnInit {
 
   onSubmit() {
     var body = {
-      userID: this.userID,
+      idUsuario: this.userID,
       resetPasswordToken: this.resetPasswordToken,
       newPassword: this.formModel.value.Passwords.Password
     };

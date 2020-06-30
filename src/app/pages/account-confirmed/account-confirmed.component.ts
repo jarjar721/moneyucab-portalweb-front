@@ -30,7 +30,7 @@ export class AccountConfirmedComponent implements OnInit {
 
   confirmAccount() {
     var body = {
-      userID: this.userID,
+      idUsuario: this.userID,
       confirmationToken: this.confirmationToken,
     };
     this.service.confirmAccount(body).subscribe(

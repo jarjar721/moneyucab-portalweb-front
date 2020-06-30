@@ -59,7 +59,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userID', res.result.userID);
         localStorage.setItem('username', res.result.username);
         localStorage.setItem('email', res.result.email);
-        this.getUserInfo();
+        //this.getUserInfo();
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 3000); // Al retornar el resultado, el spinner se esconde luego de 3seg
+        
+        this.router.navigateByUrl('/dashboard');
       },
       err => {
         this.spinner.hide(); // Al retornar error, el spinner se esconde inmediatamente
