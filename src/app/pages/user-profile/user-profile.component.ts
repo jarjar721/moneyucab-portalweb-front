@@ -14,6 +14,7 @@ import { Parametro } from 'src/app/models/Parametro.model';
 export class UserProfileComponent implements OnInit {
 
   _username: string = localStorage.getItem('username');
+  _email: string = localStorage.getItem('email');
   _user: any;
   _userParameters: any;
 
@@ -78,7 +79,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUser() {
-    this.service.getUserInfo(this._username).subscribe(
+    this.service.getUserInfo(this._email).subscribe(
       (res:any) => {
         console.log(res); // res JSON
         this._user = res;
