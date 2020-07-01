@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
 
   _username: string = localStorage.getItem('username');
+  _email: string = localStorage.getItem('email');
   _userIntID: number;
   _user: any;
   _saldoMonedero: number = 0;
@@ -71,7 +72,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadUser() {
-    this.service.getUserInfo(this._username).subscribe(
+    this.service.getUserInfo(this._email).subscribe(
       (res:any) => {
         console.log(res); // res JSON
         this._user = res;
